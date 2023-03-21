@@ -37,7 +37,7 @@ function Selectable_(props: SelectableProps, ref: HTMLElementRefOf<"div">) {
   //
   // By default, we are just piping all SelectableProps here, but feel free
   // to do whatever works for you.
-
+ // @ts-ignore
   return <PlasmicSelectable selectable={{ ref }} {...props} />;
 }
 
