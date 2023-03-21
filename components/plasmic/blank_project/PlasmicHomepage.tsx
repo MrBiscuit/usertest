@@ -39,9 +39,9 @@ import {
 import Selectable from "../../Selectable"; // plasmic-import: fmmM3UFhDh/component
 import Avatar from "../../Avatar"; // plasmic-import: Nyf0fcpCBO/component
 import Field from "../../Field"; // plasmic-import: wzacTm_Aql/component
+import Switch from "../../Switch"; // plasmic-import: LfL2mcCf-Co/component
 import Select from "../../Select"; // plasmic-import: CbeSuJTES8a/component
 import TextInput from "../../TextInput"; // plasmic-import: D5uMvH3-wZG/component
-import Switch from "../../Switch"; // plasmic-import: LfL2mcCf-Co/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -68,8 +68,9 @@ export type PlasmicHomepage__OverridesType = {
   text?: p.Flex<"div">;
   selectable?: p.Flex<typeof Selectable>;
   avatar?: p.Flex<typeof Avatar>;
-  select2?: p.Flex<typeof Select>;
-  select3?: p.Flex<typeof Select>;
+  switch2?: p.Flex<typeof Switch>;
+  select?: p.Flex<typeof Select>;
+  size?: p.Flex<typeof Select>;
   src?: p.Flex<typeof TextInput>;
   _switch?: p.Flex<typeof Switch>;
 };
@@ -124,7 +125,7 @@ function PlasmicHomepage__RenderFunc(props: {
   const stateSpecs = React.useMemo(
     () => [
       {
-        path: "select2.value",
+        path: "size.value",
         type: "private",
         variableType: "text",
         initFunc: true
@@ -161,11 +162,11 @@ function PlasmicHomepage__RenderFunc(props: {
       },
 
       {
-        path: "select3.value",
+        path: "switch2.isChecked",
         type: "private",
         variableType: "text",
         initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => "default" as const
+          ? ({ $props, $state, $queries, $ctx }) => undefined
           : undefined
       }
     ],
@@ -266,7 +267,7 @@ function PlasmicHomepage__RenderFunc(props: {
                           throw e;
                         }
                       })()}
-                      size={$state.select3.value}
+                      size={$state.size.value}
                     />
                   }
                 />
@@ -281,9 +282,78 @@ function PlasmicHomepage__RenderFunc(props: {
                       <Field
                         className={classNames(
                           "__wab_instance",
+                          sty.field__nvXv0
+                        )}
+                        select={
+                          <Switch
+                            data-plasmic-name={"switch2"}
+                            data-plasmic-override={overrides.switch2}
+                            children={null}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.switch2
+                            )}
+                            isChecked={
+                              p.generateStateValueProp($state, [
+                                "switch2",
+
+                                "isChecked"
+                              ]) ?? false
+                            }
+                            onChange={(...eventArgs) => {
+                              p.generateStateOnChangeProp($state, [
+                                "switch2",
+
+                                "isChecked"
+                              ])(eventArgs[0]);
+                            }}
+                          />
+                        }
+                      >
+                        {"Show Badge"}
+                      </Field>
+                    ) : null}
+                    {(() => {
+                      try {
+                        return $state.switch2.isChecked;
+                      } catch (e) {
+                        if (e instanceof TypeError) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <Field
+                        className={classNames(
+                          "__wab_instance",
                           sty.field__vtYfL
                         )}
-                      />
+                        select={
+                          <Select
+                            data-plasmic-name={"select"}
+                            data-plasmic-override={overrides.select}
+                            className={classNames("__wab_instance", sty.select)}
+                            onChange={(...eventArgs) => {
+                              p.generateStateOnChangeProp($state, [
+                                "select",
+
+                                "value"
+                              ])(eventArgs[0]);
+                            }}
+                            options={[
+                              { value: "topRight", label: "Top Right" },
+                              { value: "bottomRight", label: "Bottom Right" }
+                            ]}
+                            value={p.generateStateValueProp($state, [
+                              "select",
+
+                              "value"
+                            ])}
+                          />
+                        }
+                      >
+                        {"Badge position"}
+                      </Field>
                     ) : null}
                     {true ? (
                       <Field
@@ -293,15 +363,12 @@ function PlasmicHomepage__RenderFunc(props: {
                         )}
                         select={
                           <Select
-                            data-plasmic-name={"select2"}
-                            data-plasmic-override={overrides.select2}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.select2
-                            )}
+                            data-plasmic-name={"size"}
+                            data-plasmic-override={overrides.size}
+                            className={classNames("__wab_instance", sty.size)}
                             onChange={(...eventArgs) => {
                               p.generateStateOnChangeProp($state, [
-                                "select2",
+                                "size",
 
                                 "value"
                               ])(eventArgs[0]);
@@ -311,7 +378,7 @@ function PlasmicHomepage__RenderFunc(props: {
                               { value: "small", label: "Small" }
                             ]}
                             value={p.generateStateValueProp($state, [
-                              "select2",
+                              "size",
 
                               "value"
                             ])}
@@ -319,42 +386,6 @@ function PlasmicHomepage__RenderFunc(props: {
                         }
                       >
                         {"Size"}
-                      </Field>
-                    ) : null}
-                    {true ? (
-                      <Field
-                        className={classNames(
-                          "__wab_instance",
-                          sty.field__phVm
-                        )}
-                        select={
-                          <Select
-                            data-plasmic-name={"select3"}
-                            data-plasmic-override={overrides.select3}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.select3
-                            )}
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "select3",
-
-                                "value"
-                              ])(eventArgs[0]);
-                            }}
-                            options={[
-                              { value: "default", label: "Default" },
-                              { value: "small", label: "Small" }
-                            ]}
-                            value={p.generateStateValueProp($state, [
-                              "select3",
-
-                              "value"
-                            ])}
-                          />
-                        }
-                      >
-                        {"label"}
                       </Field>
                     ) : null}
                     {true ? (
@@ -441,8 +472,9 @@ const PlasmicDescendants = {
     "text",
     "selectable",
     "avatar",
-    "select2",
-    "select3",
+    "switch2",
+    "select",
+    "size",
     "src",
     "_switch"
   ],
@@ -452,8 +484,9 @@ const PlasmicDescendants = {
     "text",
     "selectable",
     "avatar",
-    "select2",
-    "select3",
+    "switch2",
+    "select",
+    "size",
     "src",
     "_switch"
   ],
@@ -461,8 +494,9 @@ const PlasmicDescendants = {
   text: ["text"],
   selectable: ["selectable", "avatar"],
   avatar: ["avatar"],
-  select2: ["select2"],
-  select3: ["select3"],
+  switch2: ["switch2"],
+  select: ["select"],
+  size: ["size"],
   src: ["src"],
   _switch: ["_switch"]
 } as const;
@@ -476,8 +510,9 @@ type NodeDefaultElementType = {
   text: "div";
   selectable: typeof Selectable;
   avatar: typeof Avatar;
-  select2: typeof Select;
-  select3: typeof Select;
+  switch2: typeof Switch;
+  select: typeof Select;
+  size: typeof Select;
   src: typeof TextInput;
   _switch: typeof Switch;
 };
@@ -547,8 +582,9 @@ export const PlasmicHomepage = Object.assign(
     text: makeNodeComponent("text"),
     selectable: makeNodeComponent("selectable"),
     avatar: makeNodeComponent("avatar"),
-    select2: makeNodeComponent("select2"),
-    select3: makeNodeComponent("select3"),
+    switch2: makeNodeComponent("switch2"),
+    select: makeNodeComponent("select"),
+    size: makeNodeComponent("size"),
     src: makeNodeComponent("src"),
     _switch: makeNodeComponent("_switch"),
 
