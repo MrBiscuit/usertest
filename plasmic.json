@@ -310,6 +310,19 @@
           "cssFilePath": "plasmic/usertest/PlasmicSelectable.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "wzacTm_Aql",
+          "name": "Field",
+          "type": "managed",
+          "projectId": "srLNpwS495U56VP6wX97Sc",
+          "renderModuleFilePath": "plasmic/usertest/PlasmicField.tsx",
+          "importSpec": {
+            "modulePath": "Field.tsx"
+          },
+          "cssFilePath": "plasmic/usertest/PlasmicField.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -332,6 +345,11 @@
           "id": "OfZnG_-Zhi2",
           "name": "ChecksvgIcon",
           "moduleFilePath": "plasmic/blank_project/icons/PlasmicIcon__Checksvg.tsx"
+        },
+        {
+          "id": "wEeWsfB7OP",
+          "name": "IconIcon",
+          "moduleFilePath": "plasmic/usertest/icons/PlasmicIcon__Icon.tsx"
         }
       ],
       "images": [

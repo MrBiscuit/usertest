@@ -159,7 +159,14 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         projectcss.plasmic_tokens,
-        sty.root
+        sty.root,
+        {
+          [sty.rootrelativePlacement_top]: hasVariant(
+            $state,
+            "relativePlacement",
+            "top"
+          )
+        }
       )}
     >
       {(hasVariant($state, "relativePlacement", "bottom") ? true : false) ? (
@@ -179,7 +186,13 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
       <div
         data-plasmic-name={"middle"}
         data-plasmic-override={overrides.middle}
-        className={classNames(projectcss.all, sty.middle)}
+        className={classNames(projectcss.all, sty.middle, {
+          [sty.middlerelativePlacement_top]: hasVariant(
+            $state,
+            "relativePlacement",
+            "top"
+          )
+        })}
       >
         {(hasVariant($state, "relativePlacement", "right") ? true : false) ? (
           <div
@@ -198,7 +211,13 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
         <div
           data-plasmic-name={"main"}
           data-plasmic-override={overrides.main}
-          className={classNames(projectcss.all, sty.main)}
+          className={classNames(projectcss.all, sty.main, {
+            [sty.mainrelativePlacement_top]: hasVariant(
+              $state,
+              "relativePlacement",
+              "top"
+            )
+          })}
         >
           {p.renderPlasmicSlot({
             defaultContents: null,

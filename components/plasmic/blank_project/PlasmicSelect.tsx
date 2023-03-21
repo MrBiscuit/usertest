@@ -483,6 +483,11 @@ function PlasmicSelect__RenderFunc(props: {
                     [sty.slotTargetPlaceholdercolor_softPurple_showPlaceholder]:
                       hasVariant($state, "color", "softPurple") &&
                       hasVariant($state, "showPlaceholder", "showPlaceholder"),
+                    [sty.slotTargetPlaceholderisOpen]: hasVariant(
+                      $state,
+                      "isOpen",
+                      "isOpen"
+                    ),
                     [sty.slotTargetPlaceholdershowPlaceholder]: hasVariant(
                       $state,
                       "showPlaceholder",

@@ -43,6 +43,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic_blank_project.module.css"; // plasmic-import: srLNpwS495U56VP6wX97Sc/projectcss
 import sty from "./PlasmicSelect__Option.module.css"; // plasmic-import: WXVrYboz9Ty/css
 
+import IconIcon from "../usertest/icons/PlasmicIcon__Icon"; // plasmic-import: wEeWsfB7OP/icon
+
 import SUPER__PlasmicSelect from "./PlasmicSelect"; // plasmic-import: CbeSuJTES8a/render
 
 export type PlasmicSelect__Option__VariantMembers = {
@@ -79,6 +81,7 @@ export const PlasmicSelect__Option__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicSelect__Option__OverridesType = {
   root?: p.Flex<"div">;
+  svg?: p.Flex<"svg">;
   labelContainer?: p.Flex<"div">;
 };
 
@@ -191,6 +194,17 @@ function PlasmicSelect__Option__RenderFunc(props: {
         }
       )}
     >
+      {(hasVariant($state, "isSelected", "isSelected") ? true : false) ? (
+        <IconIcon
+          data-plasmic-name={"svg"}
+          data-plasmic-override={overrides.svg}
+          className={classNames(projectcss.all, sty.svg, {
+            [sty.svgisSelected]: hasVariant($state, "isSelected", "isSelected")
+          })}
+          role={"img"}
+        />
+      ) : null}
+
       <div
         data-plasmic-name={"labelContainer"}
         data-plasmic-override={overrides.labelContainer}
@@ -245,7 +259,8 @@ function useBehavior<P extends pp.BaseSelectOptionProps>(
 }
 
 const PlasmicDescendants = {
-  root: ["root", "labelContainer"],
+  root: ["root", "svg", "labelContainer"],
+  svg: ["svg"],
   labelContainer: ["labelContainer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -253,6 +268,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  svg: "svg";
   labelContainer: "div";
 };
 
@@ -316,6 +332,7 @@ export const PlasmicSelect__Option = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    svg: makeNodeComponent("svg"),
     labelContainer: makeNodeComponent("labelContainer"),
 
     // Metadata about props expected for PlasmicSelect__Option

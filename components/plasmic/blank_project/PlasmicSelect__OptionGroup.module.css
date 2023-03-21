@@ -91,7 +91,9 @@
 }
 .option__bhNfo:global(.__wab_instance) {
   position: relative;
+  flex-shrink: 0;
 }
 .option__uJTvE:global(.__wab_instance) {
   position: relative;
+  flex-shrink: 0;
 }

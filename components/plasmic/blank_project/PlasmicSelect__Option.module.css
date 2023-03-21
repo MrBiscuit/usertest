@@ -4,17 +4,36 @@
   position: relative;
   align-items: center;
   justify-content: flex-start;
-  padding: 8px 16px;
+  height: 24px;
+  padding: 8px 16px 8px 32px;
 }
 .rootisSelected {
-  background: #edf6ff;
+  background: none;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 .rootisHighlighted {
-  background: #e1f0ff;
+  background: #0d99ff;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 .rootisDisabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+.svg {
+  position: relative;
+  object-fit: cover;
+  max-width: 100%;
+  color: #ffffff;
+  width: 8px;
+  height: 8px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.svgisSelected {
+  display: block;
 }
 .labelContainer {
   display: flex;
@@ -25,6 +44,9 @@
 }
 .slotTargetChildren {
   white-space: pre;
+  font-size: 11px;
+  color: #ffffff;
+  user-select: none;
 }
 .slotTargetChildren > :global(.__wab_text),
 .slotTargetChildren > :global(.__wab_slot-string-wrapper),
@@ -76,5 +98,12 @@
   overflow: hidden;
 }
 .slotTargetChildrenisSelected {
-  color: #0091ff;
+  color: #ffffff;
+  user-select: none;
+}
+.slotTargetChildrenisHighlighted {
+  color: #ffffff;
+}
+.slotTargetChildrenisDisabled {
+  user-select: none;
 }
