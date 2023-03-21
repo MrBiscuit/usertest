@@ -189,7 +189,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 sty.h1
               )}
             >
-              {"Try adjusting avatar size:"}
+              {"Try adjusting the size of the avatar:"}
             </h1>
 
             <div
