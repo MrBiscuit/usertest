@@ -56,9 +56,11 @@ export const PlasmicAvatar__VariantProps = new Array<VariantPropType>(
   "border"
 );
 
-export type PlasmicAvatar__ArgsType = {};
+export type PlasmicAvatar__ArgsType = {
+  image?: React.ComponentProps<typeof p.PlasmicImg>["src"];
+};
 type ArgPropType = keyof PlasmicAvatar__ArgsType;
-export const PlasmicAvatar__ArgProps = new Array<ArgPropType>();
+export const PlasmicAvatar__ArgProps = new Array<ArgPropType>("image");
 
 export type PlasmicAvatar__OverridesType = {
   root?: p.Flex<"div">;
@@ -66,6 +68,7 @@ export type PlasmicAvatar__OverridesType = {
 };
 
 export interface DefaultAvatarProps {
+  image?: React.ComponentProps<typeof p.PlasmicImg>["src"];
   size?: SingleChoiceArg<"_default" | "small">;
   border?: SingleBooleanChoiceArg<"border">;
   className?: string;
@@ -96,7 +99,17 @@ function PlasmicAvatar__RenderFunc(props: {
   const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {
+          image:
+            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/avatar-neytiri-1557258721.jpg" as const
+        },
+        props.args
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -161,9 +174,7 @@ function PlasmicAvatar__RenderFunc(props: {
         displayMinWidth={"0" as const}
         displayWidth={"100%" as const}
         loading={"lazy" as const}
-        src={
-          "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/avatar-neytiri-1557258721.jpg" as const
-        }
+        src={args.image}
       />
     </div>
   ) as React.ReactElement | null;

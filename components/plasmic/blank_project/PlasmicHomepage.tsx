@@ -38,12 +38,16 @@ import {
 } from "@plasmicapp/react-web";
 import Avatar from "../../Avatar"; // plasmic-import: Nyf0fcpCBO/component
 import Select from "../../Select"; // plasmic-import: CbeSuJTES8a/component
+import TextInput from "../../TextInput"; // plasmic-import: D5uMvH3-wZG/component
 import Switch from "../../Switch"; // plasmic-import: LfL2mcCf-Co/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "./plasmic_blank_project.module.css"; // plasmic-import: srLNpwS495U56VP6wX97Sc/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: HtgHzpTQFaZ7/css
+
+import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: EXEsZQ8P89p/icon
+import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: OfZnG_-Zhi2/icon
 
 export type PlasmicHomepage__VariantMembers = {};
 export type PlasmicHomepage__VariantsArgs = {};
@@ -62,6 +66,7 @@ export type PlasmicHomepage__OverridesType = {
   avatar?: p.Flex<typeof Avatar>;
   select?: p.Flex<typeof Select>;
   select2?: p.Flex<typeof Select>;
+  src?: p.Flex<typeof TextInput>;
   _switch?: p.Flex<typeof Switch>;
 };
 
@@ -128,6 +133,15 @@ function PlasmicHomepage__RenderFunc(props: {
         initFunc: true
           ? ({ $props, $state, $queries, $ctx }) => undefined
           : undefined
+      },
+      {
+        path: "src.value",
+        type: "private",
+        variableType: "text",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) =>
+              "https://pyxis.nymag.com/v1/imgs/f85/54d/9494425816f9436f1366315cd8a955ca9e-avatar.1x.rsquare.w1400.jpg" as const
+          : undefined
       }
     ],
     [$props, $ctx]
@@ -175,7 +189,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 sty.h1
               )}
             >
-              {"try adjusting avatar size"}
+              {"Try adjusting avatar size:"}
             </h1>
 
             <div
@@ -210,6 +224,16 @@ function PlasmicHomepage__RenderFunc(props: {
                   data-plasmic-override={overrides.avatar}
                   border={$state._switch.isChecked}
                   className={classNames("__wab_instance", sty.avatar)}
+                  image={(() => {
+                    try {
+                      return $state.src.value;
+                    } catch (e) {
+                      if (e instanceof TypeError) {
+                        return "https://pyxis.nymag.com/v1/imgs/f85/54d/9494425816f9436f1366315cd8a955ca9e-avatar.1x.rsquare.w1400.jpg";
+                      }
+                      throw e;
+                    }
+                  })()}
                   size={$state.select2.value}
                 />
 
@@ -263,6 +287,19 @@ function PlasmicHomepage__RenderFunc(props: {
                       ])}
                     />
 
+                    <TextInput
+                      data-plasmic-name={"src"}
+                      data-plasmic-override={overrides.src}
+                      className={classNames("__wab_instance", sty.src)}
+                      onChange={(...eventArgs) => {
+                        p.generateStateOnChangeProp($state, ["src", "value"])(
+                          (e => e.target?.value).apply(null, eventArgs)
+                        );
+                      }}
+                      placeholder={"image src" as const}
+                      value={p.generateStateValueProp($state, ["src", "value"])}
+                    />
+
                     <Switch
                       data-plasmic-name={"_switch"}
                       data-plasmic-override={overrides._switch}
@@ -304,14 +341,25 @@ const PlasmicDescendants = {
     "avatar",
     "select",
     "select2",
+    "src",
     "_switch"
   ],
-  section: ["section", "h1", "text", "avatar", "select", "select2", "_switch"],
+  section: [
+    "section",
+    "h1",
+    "text",
+    "avatar",
+    "select",
+    "select2",
+    "src",
+    "_switch"
+  ],
   h1: ["h1"],
   text: ["text"],
   avatar: ["avatar"],
   select: ["select"],
   select2: ["select2"],
+  src: ["src"],
   _switch: ["_switch"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -325,6 +373,7 @@ type NodeDefaultElementType = {
   avatar: typeof Avatar;
   select: typeof Select;
   select2: typeof Select;
+  src: typeof TextInput;
   _switch: typeof Switch;
 };
 
@@ -394,6 +443,7 @@ export const PlasmicHomepage = Object.assign(
     avatar: makeNodeComponent("avatar"),
     select: makeNodeComponent("select"),
     select2: makeNodeComponent("select2"),
+    src: makeNodeComponent("src"),
     _switch: makeNodeComponent("_switch"),
 
     // Metadata about props expected for PlasmicHomepage

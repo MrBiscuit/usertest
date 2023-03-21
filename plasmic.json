@@ -283,6 +283,20 @@
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "switch"
+        },
+        {
+          "id": "D5uMvH3-wZG",
+          "name": "TextInput",
+          "type": "managed",
+          "projectId": "srLNpwS495U56VP6wX97Sc",
+          "renderModuleFilePath": "plasmic/blank_project/PlasmicTextInput.tsx",
+          "importSpec": {
+            "modulePath": "TextInput.tsx"
+          },
+          "cssFilePath": "plasmic/blank_project/PlasmicTextInput.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "text-input"
         }
       ],
       "icons": [
@@ -295,6 +309,16 @@
           "id": "2kWRLqlPNlT",
           "name": "ChevronUpsvgIcon",
           "moduleFilePath": "plasmic/blank_project/icons/PlasmicIcon__ChevronUpsvg.tsx"
+        },
+        {
+          "id": "EXEsZQ8P89p",
+          "name": "SearchsvgIcon",
+          "moduleFilePath": "plasmic/blank_project/icons/PlasmicIcon__Searchsvg.tsx"
+        },
+        {
+          "id": "OfZnG_-Zhi2",
+          "name": "ChecksvgIcon",
+          "moduleFilePath": "plasmic/blank_project/icons/PlasmicIcon__Checksvg.tsx"
         }
       ],
       "images": [
