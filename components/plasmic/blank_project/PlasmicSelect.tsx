@@ -65,6 +65,7 @@ export type PlasmicSelect__VariantMembers = {
     | "softGray"
     | "clear";
 };
+
 export type PlasmicSelect__VariantsArgs = {
   showPlaceholder?: SingleBooleanChoiceArg<"showPlaceholder">;
   isOpen?: SingleBooleanChoiceArg<"isOpen">;
@@ -82,6 +83,7 @@ export type PlasmicSelect__VariantsArgs = {
     | "clear"
   >;
 };
+
 type VariantPropType = keyof PlasmicSelect__VariantsArgs;
 export const PlasmicSelect__VariantProps = new Array<VariantPropType>(
   "showPlaceholder",
@@ -100,6 +102,7 @@ export type PlasmicSelect__ArgsType = {
   "aria-labelledby"?: string;
   options?: any;
 };
+
 type ArgPropType = keyof PlasmicSelect__ArgsType;
 export const PlasmicSelect__ArgProps = new Array<ArgPropType>(
   "selectedContent",
@@ -169,12 +172,21 @@ function PlasmicSelect__RenderFunc(props: {
   const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
     ...variants
   };
+
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
@@ -190,6 +202,7 @@ function PlasmicSelect__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.showPlaceholder
           : undefined
       },
+
       {
         path: "isOpen",
         type: "private",
@@ -198,6 +211,7 @@ function PlasmicSelect__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.isOpen
           : undefined
       },
+
       {
         path: "isDisabled",
         type: "private",
@@ -206,6 +220,7 @@ function PlasmicSelect__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.isDisabled
           : undefined
       },
+
       {
         path: "color",
         type: "private",
@@ -214,6 +229,7 @@ function PlasmicSelect__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.color
           : undefined
       },
+
       {
         path: "value",
         type: "writable",
@@ -223,6 +239,7 @@ function PlasmicSelect__RenderFunc(props: {
         onChangeProp: "onChange"
       }
     ],
+
     [$props, $ctx]
   );
   const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
@@ -231,6 +248,7 @@ function PlasmicSelect__RenderFunc(props: {
     useTrigger("useFocusVisibleWithin", {
       isTextInput: false
     });
+
   const triggers = {
     focusVisibleWithin_root: isRootFocusVisibleWithin
   };
@@ -247,6 +265,7 @@ function PlasmicSelect__RenderFunc(props: {
           projectcss.root_reset,
           projectcss.plasmic_default_styles,
           projectcss.plasmic_mixins,
+          projectcss.plasmic_tokens,
           sty.root,
           {
             [sty.root___focusVisibleWithin]: triggers.focusVisibleWithin_root,
@@ -632,6 +651,7 @@ function useBehavior<P extends pp.BaseSelectProps>(
       OptionGroupComponent: Select__OptionGroup,
       itemsProp: "options"
     },
+
     ref
   );
 }
@@ -653,7 +673,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   trigger: "button";
@@ -675,15 +695,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicSelect__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicSelect__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicSelect__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicSelect__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

@@ -36,6 +36,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
+import Selectable from "../../Selectable"; // plasmic-import: fmmM3UFhDh/component
 import Avatar from "../../Avatar"; // plasmic-import: Nyf0fcpCBO/component
 import Select from "../../Select"; // plasmic-import: CbeSuJTES8a/component
 import TextInput from "../../TextInput"; // plasmic-import: D5uMvH3-wZG/component
@@ -50,6 +51,7 @@ import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: E
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: OfZnG_-Zhi2/icon
 
 export type PlasmicHomepage__VariantMembers = {};
+
 export type PlasmicHomepage__VariantsArgs = {};
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>();
@@ -63,6 +65,7 @@ export type PlasmicHomepage__OverridesType = {
   section?: p.Flex<"section">;
   h1?: p.Flex<"h1">;
   text?: p.Flex<"div">;
+  selectable?: p.Flex<typeof Selectable>;
   avatar?: p.Flex<typeof Avatar>;
   select?: p.Flex<typeof Select>;
   select2?: p.Flex<typeof Select>;
@@ -97,12 +100,21 @@ function PlasmicHomepage__RenderFunc(props: {
   const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
     ...variants
   };
+
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
@@ -118,6 +130,7 @@ function PlasmicHomepage__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => "blue" as const
           : undefined
       },
+
       {
         path: "select2.value",
         type: "private",
@@ -126,6 +139,7 @@ function PlasmicHomepage__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => "default" as const
           : undefined
       },
+
       {
         path: "_switch.isChecked",
         type: "private",
@@ -134,6 +148,7 @@ function PlasmicHomepage__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => undefined
           : undefined
       },
+
       {
         path: "src.value",
         type: "private",
@@ -144,6 +159,7 @@ function PlasmicHomepage__RenderFunc(props: {
           : undefined
       }
     ],
+
     [$props, $ctx]
   );
   const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
@@ -169,6 +185,7 @@ function PlasmicHomepage__RenderFunc(props: {
             projectcss.root_reset,
             projectcss.plasmic_default_styles,
             projectcss.plasmic_mixins,
+            projectcss.plasmic_tokens,
             sty.root
           )}
         >
@@ -219,22 +236,29 @@ function PlasmicHomepage__RenderFunc(props: {
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__kWhil)}
               >
-                <Avatar
-                  data-plasmic-name={"avatar"}
-                  data-plasmic-override={overrides.avatar}
-                  border={$state._switch.isChecked}
-                  className={classNames("__wab_instance", sty.avatar)}
-                  image={(() => {
-                    try {
-                      return $state.src.value;
-                    } catch (e) {
-                      if (e instanceof TypeError) {
-                        return "https://pyxis.nymag.com/v1/imgs/f85/54d/9494425816f9436f1366315cd8a955ca9e-avatar.1x.rsquare.w1400.jpg";
-                      }
-                      throw e;
-                    }
-                  })()}
-                  size={$state.select2.value}
+                <Selectable
+                  data-plasmic-name={"selectable"}
+                  data-plasmic-override={overrides.selectable}
+                  className={classNames("__wab_instance", sty.selectable)}
+                  selectable={
+                    <Avatar
+                      data-plasmic-name={"avatar"}
+                      data-plasmic-override={overrides.avatar}
+                      border={$state._switch.isChecked}
+                      className={classNames("__wab_instance", sty.avatar)}
+                      image={(() => {
+                        try {
+                          return $state.src.value;
+                        } catch (e) {
+                          if (e instanceof TypeError) {
+                            return "https://pyxis.nymag.com/v1/imgs/f85/54d/9494425816f9436f1366315cd8a955ca9e-avatar.1x.rsquare.w1400.jpg";
+                          }
+                          throw e;
+                        }
+                      })()}
+                      size={$state.select2.value}
+                    />
+                  }
                 />
 
                 {true ? (
@@ -338,6 +362,7 @@ const PlasmicDescendants = {
     "section",
     "h1",
     "text",
+    "selectable",
     "avatar",
     "select",
     "select2",
@@ -348,6 +373,7 @@ const PlasmicDescendants = {
     "section",
     "h1",
     "text",
+    "selectable",
     "avatar",
     "select",
     "select2",
@@ -356,6 +382,7 @@ const PlasmicDescendants = {
   ],
   h1: ["h1"],
   text: ["text"],
+  selectable: ["selectable", "avatar"],
   avatar: ["avatar"],
   select: ["select"],
   select2: ["select2"],
@@ -364,12 +391,13 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   section: "section";
   h1: "h1";
   text: "div";
+  selectable: typeof Selectable;
   avatar: typeof Avatar;
   select: typeof Select;
   select2: typeof Select;
@@ -389,15 +417,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicHomepage__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicHomepage__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicHomepage__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicHomepage__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;
@@ -440,6 +468,7 @@ export const PlasmicHomepage = Object.assign(
     section: makeNodeComponent("section"),
     h1: makeNodeComponent("h1"),
     text: makeNodeComponent("text"),
+    selectable: makeNodeComponent("selectable"),
     avatar: makeNodeComponent("avatar"),
     select: makeNodeComponent("select"),
     select2: makeNodeComponent("select2"),

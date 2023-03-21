@@ -52,12 +52,14 @@ export type PlasmicTextInput__VariantMembers = {
   isDisabled: "isDisabled";
   color: "dark";
 };
+
 export type PlasmicTextInput__VariantsArgs = {
   showStartIcon?: SingleBooleanChoiceArg<"showStartIcon">;
   showEndIcon?: SingleBooleanChoiceArg<"showEndIcon">;
   isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
   color?: SingleChoiceArg<"dark">;
 };
+
 type VariantPropType = keyof PlasmicTextInput__VariantsArgs;
 export const PlasmicTextInput__VariantProps = new Array<VariantPropType>(
   "showStartIcon",
@@ -76,6 +78,7 @@ export type PlasmicTextInput__ArgsType = {
   "aria-label"?: string;
   "aria-labelledby"?: string;
 };
+
 type ArgPropType = keyof PlasmicTextInput__ArgsType;
 export const PlasmicTextInput__ArgProps = new Array<ArgPropType>(
   "placeholder",
@@ -145,6 +148,7 @@ function PlasmicTextInput__RenderFunc(props: {
     ...args,
     ...variants
   };
+
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
@@ -160,6 +164,7 @@ function PlasmicTextInput__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.showStartIcon
           : undefined
       },
+
       {
         path: "showEndIcon",
         type: "private",
@@ -168,6 +173,7 @@ function PlasmicTextInput__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.showEndIcon
           : undefined
       },
+
       {
         path: "isDisabled",
         type: "private",
@@ -176,6 +182,7 @@ function PlasmicTextInput__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.isDisabled
           : undefined
       },
+
       {
         path: "color",
         type: "private",
@@ -184,6 +191,7 @@ function PlasmicTextInput__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.color
           : undefined
       },
+
       {
         path: "value",
         type: "writable",
@@ -193,6 +201,7 @@ function PlasmicTextInput__RenderFunc(props: {
         onChangeProp: "onChange"
       }
     ],
+
     [$props, $ctx]
   );
   const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
@@ -201,6 +210,7 @@ function PlasmicTextInput__RenderFunc(props: {
     useTrigger("useFocusVisibleWithin", {
       isTextInput: true
     });
+
   const triggers = {
     focusVisibleWithin_root: isRootFocusVisibleWithin
   };
@@ -216,6 +226,7 @@ function PlasmicTextInput__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
         sty.root,
         {
           [sty.root___focusVisibleWithin]: triggers.focusVisibleWithin_root,
@@ -383,7 +394,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   startIconContainer: "div";
@@ -403,15 +414,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicTextInput__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicTextInput__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicTextInput__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicTextInput__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

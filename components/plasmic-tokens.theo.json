@@ -1,5 +1,26 @@
 {
-  "props": [],
+  "props": [
+    {
+      "name": "indicatorSize",
+      "type": "spacing",
+      "value": "8px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "srLNpwS495U56VP6wX97Sc",
+        "id": "QO1YKPFT9"
+      }
+    },
+    {
+      "name": "negative",
+      "type": "spacing",
+      "value": "-4px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "srLNpwS495U56VP6wX97Sc",
+        "id": "KOTtLJlRx"
+      }
+    }
+  ],
   "global": {
     "meta": {
       "source": "plasmic.app"

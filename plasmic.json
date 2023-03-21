@@ -184,7 +184,7 @@
     {
       "projectId": "srLNpwS495U56VP6wX97Sc",
       "projectApiToken": "67wv8QDUClSKUF4V8fDj9lqgb1lKAECGFUKQgVc3VE7Xq2Qppe2Y7KjoJjx2GTusg8n05TjjdFVkmxMS77j5w",
-      "projectName": "Blank project",
+      "projectName": "usertest",
       "version": "latest",
       "cssFilePath": "plasmic/blank_project/plasmic_blank_project.module.css",
       "components": [
@@ -297,6 +297,19 @@
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "text-input"
+        },
+        {
+          "id": "fmmM3UFhDh",
+          "name": "Selectable",
+          "type": "managed",
+          "projectId": "srLNpwS495U56VP6wX97Sc",
+          "renderModuleFilePath": "plasmic/usertest/PlasmicSelectable.tsx",
+          "importSpec": {
+            "modulePath": "Selectable.tsx"
+          },
+          "cssFilePath": "plasmic/usertest/PlasmicSelectable.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

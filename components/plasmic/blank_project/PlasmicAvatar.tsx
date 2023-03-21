@@ -46,10 +46,12 @@ export type PlasmicAvatar__VariantMembers = {
   size: "_default" | "small";
   border: "border";
 };
+
 export type PlasmicAvatar__VariantsArgs = {
   size?: SingleChoiceArg<"_default" | "small">;
   border?: SingleBooleanChoiceArg<"border">;
 };
+
 type VariantPropType = keyof PlasmicAvatar__VariantsArgs;
 export const PlasmicAvatar__VariantProps = new Array<VariantPropType>(
   "size",
@@ -59,6 +61,7 @@ export const PlasmicAvatar__VariantProps = new Array<VariantPropType>(
 export type PlasmicAvatar__ArgsType = {
   image?: React.ComponentProps<typeof p.PlasmicImg>["src"];
 };
+
 type ArgPropType = keyof PlasmicAvatar__ArgsType;
 export const PlasmicAvatar__ArgProps = new Array<ArgPropType>("image");
 
@@ -115,6 +118,7 @@ function PlasmicAvatar__RenderFunc(props: {
     ...args,
     ...variants
   };
+
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
@@ -130,6 +134,7 @@ function PlasmicAvatar__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.size
           : undefined
       },
+
       {
         path: "border",
         type: "private",
@@ -139,6 +144,7 @@ function PlasmicAvatar__RenderFunc(props: {
           : undefined
       }
     ],
+
     [$props, $ctx]
   );
   const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
@@ -154,6 +160,7 @@ function PlasmicAvatar__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
         sty.root,
         undefined,
         {
@@ -186,7 +193,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   img: typeof p.PlasmicImg;
@@ -204,15 +211,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicAvatar__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicAvatar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicAvatar__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicAvatar__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

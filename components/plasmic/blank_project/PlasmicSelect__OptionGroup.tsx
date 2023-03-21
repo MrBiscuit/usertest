@@ -50,10 +50,12 @@ export type PlasmicSelect__OptionGroup__VariantMembers = {
   noTitle: "noTitle";
   isFirst: "isFirst";
 };
+
 export type PlasmicSelect__OptionGroup__VariantsArgs = {
   noTitle?: SingleBooleanChoiceArg<"noTitle">;
   isFirst?: SingleBooleanChoiceArg<"isFirst">;
 };
+
 type VariantPropType = keyof PlasmicSelect__OptionGroup__VariantsArgs;
 export const PlasmicSelect__OptionGroup__VariantProps =
   new Array<VariantPropType>("noTitle", "isFirst");
@@ -62,6 +64,7 @@ export type PlasmicSelect__OptionGroup__ArgsType = {
   children?: React.ReactNode;
   title?: React.ReactNode;
 };
+
 type ArgPropType = keyof PlasmicSelect__OptionGroup__ArgsType;
 export const PlasmicSelect__OptionGroup__ArgProps = new Array<ArgPropType>(
   "children",
@@ -106,12 +109,21 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
   const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
     ...variants
   };
+
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
@@ -127,6 +139,7 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.noTitle
           : undefined
       },
+
       {
         path: "isFirst",
         type: "private",
@@ -136,6 +149,7 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
           : undefined
       }
     ],
+
     [$props, $ctx]
   );
   const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
@@ -155,6 +169,7 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
         sty.root
       )}
     >
@@ -238,7 +253,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   separator: "div";
@@ -258,15 +273,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicSelect__OptionGroup__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicSelect__OptionGroup__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicSelect__OptionGroup__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicSelect__OptionGroup__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

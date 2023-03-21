@@ -48,11 +48,13 @@ export type PlasmicSwitch__VariantMembers = {
   isDisabled: "isDisabled";
   isChecked: "isChecked";
 };
+
 export type PlasmicSwitch__VariantsArgs = {
   noLabel?: SingleBooleanChoiceArg<"noLabel">;
   isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
   isChecked?: SingleBooleanChoiceArg<"isChecked">;
 };
+
 type VariantPropType = keyof PlasmicSwitch__VariantsArgs;
 export const PlasmicSwitch__VariantProps = new Array<VariantPropType>(
   "noLabel",
@@ -67,6 +69,7 @@ export type PlasmicSwitch__ArgsType = {
   "aria-label"?: string;
   "aria-labelledby"?: string;
 };
+
 type ArgPropType = keyof PlasmicSwitch__ArgsType;
 export const PlasmicSwitch__ArgProps = new Array<ArgPropType>(
   "children",
@@ -114,12 +117,21 @@ function PlasmicSwitch__RenderFunc(props: {
   const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
     ...variants
   };
+
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
@@ -135,6 +147,7 @@ function PlasmicSwitch__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.noLabel
           : undefined
       },
+
       {
         path: "isDisabled",
         type: "private",
@@ -143,6 +156,7 @@ function PlasmicSwitch__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.isDisabled
           : undefined
       },
+
       {
         path: "isChecked",
         type: "writable",
@@ -152,6 +166,7 @@ function PlasmicSwitch__RenderFunc(props: {
         onChangeProp: "onChange"
       }
     ],
+
     [$props, $ctx]
   );
   const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
@@ -160,6 +175,7 @@ function PlasmicSwitch__RenderFunc(props: {
     useTrigger("useFocusVisibleWithin", {
       isTextInput: false
     });
+
   const triggers = {
     focusVisibleWithin_root: isRootFocusVisibleWithin
   };
@@ -175,6 +191,7 @@ function PlasmicSwitch__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
         sty.root,
         {
           [sty.root___focusVisibleWithin]: triggers.focusVisibleWithin_root,
@@ -287,7 +304,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   toggle: "div";
@@ -308,15 +325,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicSwitch__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicSwitch__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicSwitch__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicSwitch__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

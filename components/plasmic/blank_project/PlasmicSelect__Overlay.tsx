@@ -48,9 +48,11 @@ import SUPER__PlasmicSelect from "./PlasmicSelect"; // plasmic-import: CbeSuJTES
 export type PlasmicSelect__Overlay__VariantMembers = {
   relativePlacement: "top" | "bottom" | "left" | "right";
 };
+
 export type PlasmicSelect__Overlay__VariantsArgs = {
   relativePlacement?: SingleChoiceArg<"top" | "bottom" | "left" | "right">;
 };
+
 type VariantPropType = keyof PlasmicSelect__Overlay__VariantsArgs;
 export const PlasmicSelect__Overlay__VariantProps = new Array<VariantPropType>(
   "relativePlacement"
@@ -59,6 +61,7 @@ export const PlasmicSelect__Overlay__VariantProps = new Array<VariantPropType>(
 export type PlasmicSelect__Overlay__ArgsType = {
   children?: React.ReactNode;
 };
+
 type ArgPropType = keyof PlasmicSelect__Overlay__ArgsType;
 export const PlasmicSelect__Overlay__ArgProps = new Array<ArgPropType>(
   "children"
@@ -104,12 +107,21 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
   const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
     ...variants
   };
+
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
@@ -126,6 +138,7 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
           : undefined
       }
     ],
+
     [$props, $ctx]
   );
   const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
@@ -145,6 +158,7 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
         sty.root
       )}
     >
@@ -254,7 +268,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   top: "div";
@@ -277,15 +291,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicSelect__Overlay__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicSelect__Overlay__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicSelect__Overlay__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicSelect__Overlay__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

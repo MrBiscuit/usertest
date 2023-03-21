@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C400%3B0%2C600%3B0%2C700%3B0%2C900&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C600%3B0%2C700%3B0%2C900&display=swap");
 
+.plasmic_tokens {
+  --token-QO1YKPFT9: 8px;
+  --plasmic-token-indicator-size: var(--token-QO1YKPFT9);
+  --token-KOTtLJlRx: -4px;
+  --plasmic-token-negative: var(--token-KOTtLJlRx);
+}
+
 .plasmic_default_styles {
   --mixin-4BGQ9wI3QTtE_font-family: "Inter", sans-serif;
   --mixin-4BGQ9wI3QTtE_font-size: 16px;

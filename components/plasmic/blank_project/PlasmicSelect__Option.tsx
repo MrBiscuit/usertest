@@ -50,11 +50,13 @@ export type PlasmicSelect__Option__VariantMembers = {
   isHighlighted: "isHighlighted";
   isDisabled: "isDisabled";
 };
+
 export type PlasmicSelect__Option__VariantsArgs = {
   isSelected?: SingleBooleanChoiceArg<"isSelected">;
   isHighlighted?: SingleBooleanChoiceArg<"isHighlighted">;
   isDisabled?: SingleBooleanChoiceArg<"isDisabled">;
 };
+
 type VariantPropType = keyof PlasmicSelect__Option__VariantsArgs;
 export const PlasmicSelect__Option__VariantProps = new Array<VariantPropType>(
   "isSelected",
@@ -67,6 +69,7 @@ export type PlasmicSelect__Option__ArgsType = {
   value?: string;
   textValue?: string;
 };
+
 type ArgPropType = keyof PlasmicSelect__Option__ArgsType;
 export const PlasmicSelect__Option__ArgProps = new Array<ArgPropType>(
   "children",
@@ -106,12 +109,21 @@ function PlasmicSelect__Option__RenderFunc(props: {
   const __nextRouter = useNextRouter();
 
   const $ctx = ph.useDataEnv?.() || {};
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
     ...variants
   };
+
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
@@ -127,6 +139,7 @@ function PlasmicSelect__Option__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.isSelected
           : undefined
       },
+
       {
         path: "isHighlighted",
         type: "private",
@@ -135,6 +148,7 @@ function PlasmicSelect__Option__RenderFunc(props: {
           ? ({ $props, $state, $queries, $ctx }) => $props.isHighlighted
           : undefined
       },
+
       {
         path: "isDisabled",
         type: "private",
@@ -144,6 +158,7 @@ function PlasmicSelect__Option__RenderFunc(props: {
           : undefined
       }
     ],
+
     [$props, $ctx]
   );
   const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
@@ -163,6 +178,7 @@ function PlasmicSelect__Option__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
         sty.root,
         {
           [sty.rootisDisabled]: hasVariant($state, "isDisabled", "isDisabled"),
@@ -234,7 +250,7 @@ const PlasmicDescendants = {
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
-  (typeof PlasmicDescendants)[T][number];
+  typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
   labelContainer: "div";
@@ -252,15 +268,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicSelect__Option__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicSelect__Option__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicSelect__Option__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicSelect__Option__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

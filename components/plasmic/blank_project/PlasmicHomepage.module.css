@@ -66,7 +66,7 @@
 }
 .freeBox__kWhil > :global(.__wab_flex-container) {
   flex-direction: row;
-  align-items: stretch;
+  align-items: flex-start;
   justify-content: flex-start;
   margin-left: calc(0px - 54px);
   width: calc(100% + 54px);
@@ -81,10 +81,14 @@
   > img {
   margin-left: 54px;
 }
+.selectable:global(.__wab_instance) {
+  position: relative;
+  width: auto;
+  height: auto;
+}
 .avatar:global(.__wab_instance) {
   position: relative;
-  margin-left: calc(0px + 54px) !important;
-  flex-shrink: 0;
+  margin-left: 0px;
 }
 .freeBox__vIvig {
   display: flex;
