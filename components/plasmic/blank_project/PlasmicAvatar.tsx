@@ -62,6 +62,7 @@ export const PlasmicAvatar__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicAvatar__OverridesType = {
   root?: p.Flex<"div">;
+  img?: p.Flex<typeof p.PlasmicImg>;
 };
 
 export interface DefaultAvatarProps {
@@ -147,18 +148,37 @@ function PlasmicAvatar__RenderFunc(props: {
           [sty.rootsize_small]: hasVariant($state, "size", "small")
         }
       )}
-    />
+    >
+      <p.PlasmicImg
+        data-plasmic-name={"img"}
+        data-plasmic-override={overrides.img}
+        alt={""}
+        className={classNames(sty.img)}
+        displayHeight={"100%" as const}
+        displayMaxHeight={"none" as const}
+        displayMaxWidth={"100%" as const}
+        displayMinHeight={"0" as const}
+        displayMinWidth={"0" as const}
+        displayWidth={"100%" as const}
+        loading={"lazy" as const}
+        src={
+          "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/avatar-neytiri-1557258721.jpg" as const
+        }
+      />
+    </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "img"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  img: typeof p.PlasmicImg;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -221,6 +241,7 @@ export const PlasmicAvatar = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicAvatar
     internalVariantProps: PlasmicAvatar__VariantProps,
