@@ -43,14 +43,14 @@ import projectcss from "./plasmic_blank_project.module.css"; // plasmic-import: 
 import sty from "./PlasmicAvatar.module.css"; // plasmic-import: Nyf0fcpCBO/css
 
 export type PlasmicAvatar__VariantMembers = {
-  size: "_default" | "small";
+  size: "small" | "_default" | "large";
   border: "border";
   badge: "badge";
   position: "bottomRight" | "topRight";
 };
 
 export type PlasmicAvatar__VariantsArgs = {
-  size?: SingleChoiceArg<"_default" | "small">;
+  size?: SingleChoiceArg<"small" | "_default" | "large">;
   border?: SingleBooleanChoiceArg<"border">;
   badge?: SingleBooleanChoiceArg<"badge">;
   position?: SingleChoiceArg<"bottomRight" | "topRight">;
@@ -75,11 +75,12 @@ export type PlasmicAvatar__OverridesType = {
   root?: p.Flex<"div">;
   badge?: p.Flex<"div">;
   img?: p.Flex<typeof p.PlasmicImg>;
+  ring?: p.Flex<"div">;
 };
 
 export interface DefaultAvatarProps {
   image?: React.ComponentProps<typeof p.PlasmicImg>["src"];
-  size?: SingleChoiceArg<"_default" | "small">;
+  size?: SingleChoiceArg<"small" | "_default" | "large">;
   border?: SingleBooleanChoiceArg<"border">;
   badge?: SingleBooleanChoiceArg<"badge">;
   position?: SingleChoiceArg<"bottomRight" | "topRight">;
@@ -198,6 +199,7 @@ function PlasmicAvatar__RenderFunc(props: {
             "position",
             "bottomRight"
           ),
+          [sty.rootsize_large]: hasVariant($state, "size", "large"),
           [sty.rootsize_small]: hasVariant($state, "size", "small")
         }
       )}
@@ -216,6 +218,20 @@ function PlasmicAvatar__RenderFunc(props: {
           data-plasmic-override={overrides.badge}
           className={classNames(projectcss.all, sty.badge, {
             [sty.badgebadge]: hasVariant($state, "badge", "badge"),
+            [sty.badgebadge_size_large]:
+              hasVariant($state, "badge", "badge") &&
+              hasVariant($state, "size", "large"),
+            [sty.badgebadge_size_large_position_bottomRight]:
+              hasVariant($state, "badge", "badge") &&
+              hasVariant($state, "size", "large") &&
+              hasVariant($state, "position", "bottomRight"),
+            [sty.badgebadge_size_small]:
+              hasVariant($state, "badge", "badge") &&
+              hasVariant($state, "size", "small"),
+            [sty.badgebadge_size_small_position_bottomRight]:
+              hasVariant($state, "badge", "badge") &&
+              hasVariant($state, "size", "small") &&
+              hasVariant($state, "position", "bottomRight"),
             [sty.badgeposition_bottomRight]: hasVariant(
               $state,
               "position",
@@ -225,7 +241,15 @@ function PlasmicAvatar__RenderFunc(props: {
               $state,
               "position",
               "topRight"
-            )
+            ),
+            [sty.badgeposition_topRight_badge_size_large]:
+              hasVariant($state, "badge", "badge") &&
+              hasVariant($state, "size", "large") &&
+              hasVariant($state, "position", "topRight"),
+            [sty.badgeposition_topRight_badge_size_small]:
+              hasVariant($state, "size", "small") &&
+              hasVariant($state, "position", "topRight") &&
+              hasVariant($state, "badge", "badge")
           })}
         />
       ) : null}
@@ -235,12 +259,32 @@ function PlasmicAvatar__RenderFunc(props: {
         alt={""}
         className={classNames(sty.img, {
           [sty.imgbadge]: hasVariant($state, "badge", "badge"),
+          [sty.imgbadge_size_large]:
+            hasVariant($state, "badge", "badge") &&
+            hasVariant($state, "size", "large"),
+          [sty.imgbadge_size_large_position_bottomRight]:
+            hasVariant($state, "badge", "badge") &&
+            hasVariant($state, "size", "large") &&
+            hasVariant($state, "position", "bottomRight"),
+          [sty.imgbadge_size_small]:
+            hasVariant($state, "badge", "badge") &&
+            hasVariant($state, "size", "small"),
+          [sty.imgbadge_size_small_position_bottomRight]:
+            hasVariant($state, "badge", "badge") &&
+            hasVariant($state, "size", "small") &&
+            hasVariant($state, "position", "bottomRight"),
+          [sty.imgborder]: hasVariant($state, "border", "border"),
           [sty.imgposition_bottomRight]: hasVariant(
             $state,
             "position",
             "bottomRight"
           ),
-          [sty.imgposition_topRight]: hasVariant($state, "position", "topRight")
+          [sty.imgposition_topRight]: hasVariant(
+            $state,
+            "position",
+            "topRight"
+          ),
+          [sty.imgsize_large]: hasVariant($state, "size", "large")
         })}
         displayHeight={"100%" as const}
         displayMaxHeight={"none" as const}
@@ -251,14 +295,25 @@ function PlasmicAvatar__RenderFunc(props: {
         loading={"lazy" as const}
         src={args.image}
       />
+
+      {(hasVariant($state, "border", "border") ? true : true) ? (
+        <div
+          data-plasmic-name={"ring"}
+          data-plasmic-override={overrides.ring}
+          className={classNames(projectcss.all, sty.ring, {
+            [sty.ringborder]: hasVariant($state, "border", "border")
+          })}
+        />
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "badge", "img"],
+  root: ["root", "badge", "img", "ring"],
   badge: ["badge"],
-  img: ["img"]
+  img: ["img"],
+  ring: ["ring"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -267,6 +322,7 @@ type NodeDefaultElementType = {
   root: "div";
   badge: "div";
   img: typeof p.PlasmicImg;
+  ring: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -331,6 +387,7 @@ export const PlasmicAvatar = Object.assign(
     // Helper components rendering sub-elements
     badge: makeNodeComponent("badge"),
     img: makeNodeComponent("img"),
+    ring: makeNodeComponent("ring"),
 
     // Metadata about props expected for PlasmicAvatar
     internalVariantProps: PlasmicAvatar__VariantProps,

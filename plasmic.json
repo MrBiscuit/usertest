@@ -323,6 +323,20 @@
           "cssFilePath": "plasmic/usertest/PlasmicField.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "206AypIGIrX",
+          "name": "Button",
+          "type": "managed",
+          "projectId": "srLNpwS495U56VP6wX97Sc",
+          "renderModuleFilePath": "plasmic/usertest/PlasmicButton.tsx",
+          "importSpec": {
+            "modulePath": "Button.tsx"
+          },
+          "cssFilePath": "plasmic/usertest/PlasmicButton.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "button"
         }
       ],
       "icons": [
@@ -355,6 +369,11 @@
           "id": "ImslAYRPk",
           "name": "SvgIcon",
           "moduleFilePath": "plasmic/usertest/icons/PlasmicIcon__Svg.tsx"
+        },
+        {
+          "id": "37rOcoUtm3E",
+          "name": "Icon2Icon",
+          "moduleFilePath": "plasmic/usertest/icons/PlasmicIcon__Icon2.tsx"
         }
       ],
       "images": [
@@ -394,6 +413,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.234",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.234/dist/plasmic.schema.json"
+  "cliVersion": "0.1.241",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.241/dist/plasmic.schema.json"
 }

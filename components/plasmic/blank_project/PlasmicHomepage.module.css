@@ -59,13 +59,14 @@
   position: relative;
   flex-direction: row;
   width: auto;
-  height: auto;
+  height: 240px;
   max-width: 100%;
+  flex-shrink: 0;
   padding: 8px;
 }
 .freeBox__kWhil > :global(.__wab_flex-container) {
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   margin-left: calc(0px - 54px);
   width: calc(100% + 54px);
@@ -86,11 +87,11 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   max-width: 100%;
   flex-shrink: 0;
-  padding: 8px;
+  padding: 0px;
 }
 .selectable:global(.__wab_instance) {
   width: auto;
@@ -236,6 +237,14 @@
   > img {
   margin-top: 8px;
 }
+.field__f8Jn:global(.__wab_instance) {
+  position: relative;
+}
+.size:global(.__wab_instance) {
+  max-width: 100%;
+  width: 205px;
+  height: auto;
+}
 .field__nvXv0:global(.__wab_instance) {
   position: relative;
 }
@@ -248,14 +257,6 @@
   display: flex;
 }
 .pos:global(.__wab_instance) {
-  max-width: 100%;
-  width: 205px;
-  height: auto;
-}
-.field__f8Jn:global(.__wab_instance) {
-  position: relative;
-}
-.size:global(.__wab_instance) {
   max-width: 100%;
   width: 205px;
   height: auto;
@@ -286,4 +287,26 @@
 ._switch:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
+}
+.text__my1Ub {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 800px;
+}
+.button:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}
+.svg__vlj4G {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
+}
+.svg__pt5MS {
+  position: relative;
+  object-fit: cover;
+  width: 1em;
+  height: 1em;
 }
