@@ -204,7 +204,6 @@ function PlasmicSelect__Option__RenderFunc(props: {
           role={"img"}
         />
       ) : null}
-
       <div
         data-plasmic-name={"labelContainer"}
         data-plasmic-override={overrides.labelContainer}

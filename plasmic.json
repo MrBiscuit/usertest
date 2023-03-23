@@ -350,6 +350,11 @@
           "id": "wEeWsfB7OP",
           "name": "IconIcon",
           "moduleFilePath": "plasmic/usertest/icons/PlasmicIcon__Icon.tsx"
+        },
+        {
+          "id": "ImslAYRPk",
+          "name": "SvgIcon",
+          "moduleFilePath": "plasmic/usertest/icons/PlasmicIcon__Svg.tsx"
         }
       ],
       "images": [

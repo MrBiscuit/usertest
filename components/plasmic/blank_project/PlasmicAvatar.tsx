@@ -45,17 +45,23 @@ import sty from "./PlasmicAvatar.module.css"; // plasmic-import: Nyf0fcpCBO/css
 export type PlasmicAvatar__VariantMembers = {
   size: "_default" | "small";
   border: "border";
+  badge: "badge";
+  position: "bottomRight" | "topRight";
 };
 
 export type PlasmicAvatar__VariantsArgs = {
   size?: SingleChoiceArg<"_default" | "small">;
   border?: SingleBooleanChoiceArg<"border">;
+  badge?: SingleBooleanChoiceArg<"badge">;
+  position?: SingleChoiceArg<"bottomRight" | "topRight">;
 };
 
 type VariantPropType = keyof PlasmicAvatar__VariantsArgs;
 export const PlasmicAvatar__VariantProps = new Array<VariantPropType>(
   "size",
-  "border"
+  "border",
+  "badge",
+  "position"
 );
 
 export type PlasmicAvatar__ArgsType = {
@@ -67,6 +73,7 @@ export const PlasmicAvatar__ArgProps = new Array<ArgPropType>("image");
 
 export type PlasmicAvatar__OverridesType = {
   root?: p.Flex<"div">;
+  badge?: p.Flex<"div">;
   img?: p.Flex<typeof p.PlasmicImg>;
 };
 
@@ -74,6 +81,8 @@ export interface DefaultAvatarProps {
   image?: React.ComponentProps<typeof p.PlasmicImg>["src"];
   size?: SingleChoiceArg<"_default" | "small">;
   border?: SingleBooleanChoiceArg<"border">;
+  badge?: SingleBooleanChoiceArg<"badge">;
+  position?: SingleChoiceArg<"bottomRight" | "topRight">;
   className?: string;
 }
 
@@ -142,6 +151,24 @@ function PlasmicAvatar__RenderFunc(props: {
         initFunc: true
           ? ({ $props, $state, $queries, $ctx }) => $props.border
           : undefined
+      },
+
+      {
+        path: "badge",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.badge
+          : undefined
+      },
+
+      {
+        path: "position",
+        type: "private",
+        variableType: "variant",
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => $props.position
+          : undefined
       }
     ],
 
@@ -164,16 +191,57 @@ function PlasmicAvatar__RenderFunc(props: {
         sty.root,
         undefined,
         {
+          [sty.rootbadge]: hasVariant($state, "badge", "badge"),
           [sty.rootborder]: hasVariant($state, "border", "border"),
+          [sty.rootposition_bottomRight]: hasVariant(
+            $state,
+            "position",
+            "bottomRight"
+          ),
           [sty.rootsize_small]: hasVariant($state, "size", "small")
         }
       )}
     >
+      {(
+        hasVariant($state, "position", "topRight")
+          ? true
+          : hasVariant($state, "position", "bottomRight")
+          ? true
+          : hasVariant($state, "badge", "badge")
+          ? true
+          : true
+      ) ? (
+        <div
+          data-plasmic-name={"badge"}
+          data-plasmic-override={overrides.badge}
+          className={classNames(projectcss.all, sty.badge, {
+            [sty.badgebadge]: hasVariant($state, "badge", "badge"),
+            [sty.badgeposition_bottomRight]: hasVariant(
+              $state,
+              "position",
+              "bottomRight"
+            ),
+            [sty.badgeposition_topRight]: hasVariant(
+              $state,
+              "position",
+              "topRight"
+            )
+          })}
+        />
+      ) : null}
       <p.PlasmicImg
         data-plasmic-name={"img"}
         data-plasmic-override={overrides.img}
         alt={""}
-        className={classNames(sty.img)}
+        className={classNames(sty.img, {
+          [sty.imgbadge]: hasVariant($state, "badge", "badge"),
+          [sty.imgposition_bottomRight]: hasVariant(
+            $state,
+            "position",
+            "bottomRight"
+          ),
+          [sty.imgposition_topRight]: hasVariant($state, "position", "topRight")
+        })}
         displayHeight={"100%" as const}
         displayMaxHeight={"none" as const}
         displayMaxWidth={"100%" as const}
@@ -188,7 +256,8 @@ function PlasmicAvatar__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img"],
+  root: ["root", "badge", "img"],
+  badge: ["badge"],
   img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -196,6 +265,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  badge: "div";
   img: typeof p.PlasmicImg;
 };
 
@@ -259,6 +329,7 @@ export const PlasmicAvatar = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    badge: makeNodeComponent("badge"),
     img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicAvatar

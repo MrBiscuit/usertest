@@ -182,7 +182,6 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
           })}
         />
       ) : null}
-
       <div
         data-plasmic-name={"middle"}
         data-plasmic-override={overrides.middle}
@@ -207,7 +206,6 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
             })}
           />
         ) : null}
-
         <div
           data-plasmic-name={"main"}
           data-plasmic-override={overrides.main}
@@ -224,7 +222,6 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
             value: args.children
           })}
         </div>
-
         {(hasVariant($state, "relativePlacement", "left") ? true : false) ? (
           <div
             data-plasmic-name={"right"}
@@ -239,7 +236,6 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
           />
         ) : null}
       </div>
-
       {(hasVariant($state, "relativePlacement", "top") ? true : false) ? (
         <div
           data-plasmic-name={"bottom"}

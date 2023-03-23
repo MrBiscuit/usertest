@@ -196,7 +196,9 @@ function PlasmicTextInput__RenderFunc(props: {
         path: "value",
         type: "writable",
         variableType: "text",
-
+        initFunc: true
+          ? ({ $props, $state, $queries, $ctx }) => "" as const
+          : undefined,
         valueProp: "value",
         onChangeProp: "onChange"
       }
@@ -289,7 +291,6 @@ function PlasmicTextInput__RenderFunc(props: {
           })}
         </div>
       ) : null}
-
       <input
         data-plasmic-name={"input"}
         data-plasmic-override={overrides.input}

@@ -160,7 +160,7 @@ function PlasmicSwitch__RenderFunc(props: {
       {
         path: "isChecked",
         type: "writable",
-        variableType: "text",
+        variableType: "boolean",
 
         valueProp: "isChecked",
         onChangeProp: "onChange"
@@ -170,15 +170,6 @@ function PlasmicSwitch__RenderFunc(props: {
     [$props, $ctx]
   );
   const $state = p.useDollarState(stateSpecs, { $props, $ctx, $queries });
-
-  const [isRootFocusVisibleWithin, triggerRootFocusVisibleWithinProps] =
-    useTrigger("useFocusVisibleWithin", {
-      isTextInput: false
-    });
-
-  const triggers = {
-    focusVisibleWithin_root: isRootFocusVisibleWithin
-  };
 
   return (
     <div
@@ -194,19 +185,16 @@ function PlasmicSwitch__RenderFunc(props: {
         projectcss.plasmic_tokens,
         sty.root,
         {
-          [sty.root___focusVisibleWithin]: triggers.focusVisibleWithin_root,
           [sty.rootisChecked]: hasVariant($state, "isChecked", "isChecked"),
           [sty.rootisDisabled]: hasVariant($state, "isDisabled", "isDisabled"),
           [sty.rootnoLabel]: hasVariant($state, "noLabel", "noLabel")
         }
       )}
-      data-plasmic-trigger-props={[triggerRootFocusVisibleWithinProps]}
     >
       <div
         data-plasmic-name={"toggle"}
         data-plasmic-override={overrides.toggle}
         className={classNames(projectcss.all, sty.toggle, {
-          [sty.toggle___focusVisibleWithin]: triggers.focusVisibleWithin_root,
           [sty.toggleisChecked]: hasVariant($state, "isChecked", "isChecked"),
           [sty.toggleisDisabled]: hasVariant($state, "isDisabled", "isDisabled")
         })}
@@ -215,7 +203,6 @@ function PlasmicSwitch__RenderFunc(props: {
           data-plasmic-name={"track"}
           data-plasmic-override={overrides.track}
           className={classNames(projectcss.all, sty.track, {
-            [sty.track___focusVisibleWithin]: triggers.focusVisibleWithin_root,
             [sty.trackisChecked]: hasVariant($state, "isChecked", "isChecked"),
             [sty.trackisDisabled]: hasVariant(
               $state,
@@ -229,19 +216,15 @@ function PlasmicSwitch__RenderFunc(props: {
           data-plasmic-name={"thumb"}
           data-plasmic-override={overrides.thumb}
           className={classNames(projectcss.all, sty.thumb, {
-            [sty.thumb___focusVisibleWithin]: triggers.focusVisibleWithin_root,
             [sty.thumbisChecked]: hasVariant($state, "isChecked", "isChecked")
           })}
         />
       </div>
-
       {(hasVariant($state, "noLabel", "noLabel") ? false : true) ? (
         <div
           data-plasmic-name={"labelContainer"}
           data-plasmic-override={overrides.labelContainer}
           className={classNames(projectcss.all, sty.labelContainer, {
-            [sty.labelContainer___focusVisibleWithin]:
-              triggers.focusVisibleWithin_root,
             [sty.labelContainernoLabel]: hasVariant(
               $state,
               "noLabel",
@@ -253,8 +236,6 @@ function PlasmicSwitch__RenderFunc(props: {
             defaultContents: "Switch me",
             value: args.children,
             className: classNames(sty.slotTargetChildren, {
-              [sty.slotTargetChildren___focusVisibleWithin]:
-                triggers.focusVisibleWithin_root,
               [sty.slotTargetChildrenisChecked]: hasVariant(
                 $state,
                 "isChecked",

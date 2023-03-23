@@ -207,7 +207,6 @@ function PlasmicSelect__OptionGroup__RenderFunc(props: {
           })}
         </div>
       ) : null}
-
       <div
         data-plasmic-name={"optionsContainer"}
         data-plasmic-override={overrides.optionsContainer}

@@ -527,7 +527,6 @@ function PlasmicSelect__RenderFunc(props: {
                 })
               : null}
           </div>
-
           <p.PlasmicIcon
             data-plasmic-name={"dropdownIcon"}
             data-plasmic-override={overrides.dropdownIcon}
@@ -594,7 +593,6 @@ function PlasmicSelect__RenderFunc(props: {
             role={"img"}
           />
         </button>
-
         {(hasVariant($state, "isOpen", "isOpen") ? true : false) ? (
           <Select__Overlay
             data-plasmic-name={"overlay"}

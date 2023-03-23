@@ -159,7 +159,6 @@ function PlasmicField__RenderFunc(props: {
             className: classNames(sty.slotTargetChildren)
           })}
         </div>
-
         {p.renderPlasmicSlot({
           defaultContents: (
             <Select

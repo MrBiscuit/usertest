@@ -48,6 +48,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic_blank_project.module.css"; // plasmic-import: srLNpwS495U56VP6wX97Sc/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: HtgHzpTQFaZ7/css
 
+import SvgIcon from "../usertest/icons/PlasmicIcon__Svg"; // plasmic-import: ImslAYRPk/icon
 import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: EXEsZQ8P89p/icon
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: OfZnG_-Zhi2/icon
 
@@ -65,11 +66,15 @@ export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
   section?: p.Flex<"section">;
   h1?: p.Flex<"h1">;
-  text?: p.Flex<"div">;
   selectable?: p.Flex<typeof Selectable>;
   avatar?: p.Flex<typeof Avatar>;
-  switch2?: p.Flex<typeof Switch>;
-  select?: p.Flex<typeof Select>;
+  title?: p.Flex<"div">;
+  close?: p.Flex<"div">;
+  titleText?: p.Flex<"div">;
+  close2?: p.Flex<"div">;
+  svg?: p.Flex<"svg">;
+  showBadge?: p.Flex<typeof Switch>;
+  pos?: p.Flex<typeof Select>;
   size?: p.Flex<typeof Select>;
   src?: p.Flex<typeof TextInput>;
   _switch?: p.Flex<typeof Switch>;
@@ -153,7 +158,7 @@ function PlasmicHomepage__RenderFunc(props: {
       },
 
       {
-        path: "select.value",
+        path: "pos.value",
         type: "private",
         variableType: "text",
         initFunc: true
@@ -162,7 +167,7 @@ function PlasmicHomepage__RenderFunc(props: {
       },
 
       {
-        path: "switch2.isChecked",
+        path: "showBadge.isChecked",
         type: "private",
         variableType: "text",
         initFunc: true
@@ -219,14 +224,11 @@ function PlasmicHomepage__RenderFunc(props: {
             >
               {"Try adjusting the size of the avatar:"}
             </h1>
-
             <div
-              data-plasmic-name={"text"}
-              data-plasmic-override={overrides.text}
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text
+                sty.text__o1RYi
               )}
             >
               {(() => {
@@ -240,220 +242,296 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
               })()}
             </div>
-
             {true ? (
               <p.Stack
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__kWhil)}
               >
-                <Selectable
-                  data-plasmic-name={"selectable"}
-                  data-plasmic-override={overrides.selectable}
-                  className={classNames("__wab_instance", sty.selectable)}
-                  selectable={
-                    <Avatar
-                      data-plasmic-name={"avatar"}
-                      data-plasmic-override={overrides.avatar}
-                      border={$state._switch.isChecked}
-                      className={classNames("__wab_instance", sty.avatar)}
-                      image={(() => {
-                        try {
-                          return $state.src.value;
-                        } catch (e) {
-                          if (e instanceof TypeError) {
-                            return "https://pyxis.nymag.com/v1/imgs/f85/54d/9494425816f9436f1366315cd8a955ca9e-avatar.1x.rsquare.w1400.jpg";
-                          }
-                          throw e;
-                        }
-                      })()}
-                      size={$state.size.value}
-                    />
-                  }
-                />
-
                 {true ? (
-                  <p.Stack
-                    as={"div"}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__vIvig)}
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__mJxFt)}
                   >
-                    {true ? (
-                      <Field
-                        className={classNames(
-                          "__wab_instance",
-                          sty.field__nvXv0
-                        )}
-                        select={
-                          <Switch
-                            data-plasmic-name={"switch2"}
-                            data-plasmic-override={overrides.switch2}
-                            children={null}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.switch2
-                            )}
-                            isChecked={
-                              p.generateStateValueProp($state, [
-                                "switch2",
-
-                                "isChecked"
-                              ]) ?? false
+                    <Selectable
+                      data-plasmic-name={"selectable"}
+                      data-plasmic-override={overrides.selectable}
+                      className={classNames("__wab_instance", sty.selectable)}
+                      selectable={
+                        <Avatar
+                          data-plasmic-name={"avatar"}
+                          data-plasmic-override={overrides.avatar}
+                          badge={$state.showBadge.isChecked}
+                          border={$state._switch.isChecked}
+                          className={classNames("__wab_instance", sty.avatar)}
+                          image={(() => {
+                            try {
+                              return $state.src.value;
+                            } catch (e) {
+                              if (e instanceof TypeError) {
+                                return "https://pyxis.nymag.com/v1/imgs/f85/54d/9494425816f9436f1366315cd8a955ca9e-avatar.1x.rsquare.w1400.jpg";
+                              }
+                              throw e;
                             }
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "switch2",
-
-                                "isChecked"
-                              ])(eventArgs[0]);
-                            }}
-                          />
-                        }
-                      >
-                        {"Show Badge"}
-                      </Field>
-                    ) : null}
-                    {(() => {
-                      try {
-                        return $state.switch2.isChecked;
-                      } catch (e) {
-                        if (e instanceof TypeError) {
-                          return true;
-                        }
-                        throw e;
+                          })()}
+                          position={
+                            $state.showBadge.isChecked === true
+                              ? $state.pos.value
+                              : null
+                          }
+                          size={$state.size.value}
+                        />
                       }
-                    })() ? (
-                      <Field
-                        className={classNames(
-                          "__wab_instance",
-                          sty.field__vtYfL
-                        )}
-                        select={
-                          <Select
-                            data-plasmic-name={"select"}
-                            data-plasmic-override={overrides.select}
-                            className={classNames("__wab_instance", sty.select)}
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "select",
-
-                                "value"
-                              ])(eventArgs[0]);
-                            }}
-                            options={[
-                              { value: "topRight", label: "Top Right" },
-                              { value: "bottomRight", label: "Bottom Right" }
-                            ]}
-                            value={p.generateStateValueProp($state, [
-                              "select",
-
-                              "value"
-                            ])}
-                          />
-                        }
+                    />
+                  </div>
+                ) : null}
+                {true ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__qjsis)}
+                  >
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__jMk3)}
+                    >
+                      <p.Stack
+                        as={"div"}
+                        data-plasmic-name={"title"}
+                        data-plasmic-override={overrides.title}
+                        hasGap={true}
+                        className={classNames(projectcss.all, sty.title)}
                       >
-                        {"Badge position"}
-                      </Field>
-                    ) : null}
-                    {true ? (
-                      <Field
-                        className={classNames(
-                          "__wab_instance",
-                          sty.field__f8Jn
-                        )}
-                        select={
-                          <Select
-                            data-plasmic-name={"size"}
-                            data-plasmic-override={overrides.size}
-                            className={classNames("__wab_instance", sty.size)}
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "size",
-
-                                "value"
-                              ])(eventArgs[0]);
-                            }}
-                            options={[
-                              { value: "default", label: "Default" },
-                              { value: "small", label: "Small" }
-                            ]}
-                            value={p.generateStateValueProp($state, [
-                              "size",
-
-                              "value"
-                            ])}
+                        <div
+                          data-plasmic-name={"close"}
+                          data-plasmic-override={overrides.close}
+                          className={classNames(projectcss.all, sty.close)}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__an96O
+                            )}
+                          >
+                            {"🌈"}
+                          </div>
+                        </div>
+                        <div
+                          data-plasmic-name={"titleText"}
+                          data-plasmic-override={overrides.titleText}
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.titleText
+                          )}
+                        >
+                          {"Tokens POC"}
+                        </div>
+                        <div
+                          data-plasmic-name={"close2"}
+                          data-plasmic-override={overrides.close2}
+                          className={classNames(projectcss.all, sty.close2)}
+                        >
+                          <SvgIcon
+                            data-plasmic-name={"svg"}
+                            data-plasmic-override={overrides.svg}
+                            className={classNames(projectcss.all, sty.svg)}
+                            role={"img"}
                           />
-                        }
-                      >
-                        {"Size"}
-                      </Field>
-                    ) : null}
+                        </div>
+                      </p.Stack>
+                    </div>
                     {true ? (
-                      <Field
+                      <p.Stack
+                        as={"div"}
+                        hasGap={true}
                         className={classNames(
-                          "__wab_instance",
-                          sty.field__viEPu
+                          projectcss.all,
+                          sty.freeBox__vIvig
                         )}
-                        select={
-                          <TextInput
-                            data-plasmic-name={"src"}
-                            data-plasmic-override={overrides.src}
-                            className={classNames("__wab_instance", sty.src)}
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "src",
-
-                                "value"
-                              ])((e => e.target?.value).apply(null, eventArgs));
-                            }}
-                            placeholder={"image src" as const}
-                            value={p.generateStateValueProp($state, [
-                              "src",
-
-                              "value"
-                            ])}
-                          />
-                        }
                       >
-                        {"Src"}
-                      </Field>
-                    ) : null}
-                    {true ? (
-                      <Field
-                        className={classNames(
-                          "__wab_instance",
-                          sty.field__zaXw9
-                        )}
-                        select={
-                          <Switch
-                            data-plasmic-name={"_switch"}
-                            data-plasmic-override={overrides._switch}
-                            children={null}
+                        {true ? (
+                          <Field
                             className={classNames(
                               "__wab_instance",
-                              sty._switch
+                              sty.field__nvXv0
                             )}
-                            isChecked={
-                              p.generateStateValueProp($state, [
-                                "_switch",
-
-                                "isChecked"
-                              ]) ?? false
+                            select={
+                              <Switch
+                                data-plasmic-name={"showBadge"}
+                                data-plasmic-override={overrides.showBadge}
+                                children={null}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.showBadge
+                                )}
+                                isChecked={
+                                  p.generateStateValueProp($state, [
+                                    "showBadge",
+                                    "isChecked"
+                                  ]) ?? false
+                                }
+                                onChange={(...eventArgs) => {
+                                  p.generateStateOnChangeProp($state, [
+                                    "showBadge",
+                                    "isChecked"
+                                  ])(eventArgs[0]);
+                                }}
+                              />
                             }
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "_switch",
-
-                                "isChecked"
-                              ])(eventArgs[0]);
-                            }}
-                          />
-                        }
-                      >
-                        {"Show Border"}
-                      </Field>
+                          >
+                            {"Show Badge"}
+                          </Field>
+                        ) : null}
+                        {(() => {
+                          try {
+                            return $state.showBadge.isChecked;
+                          } catch (e) {
+                            if (e instanceof TypeError) {
+                              return true;
+                            }
+                            throw e;
+                          }
+                        })() ? (
+                          <Field
+                            className={classNames(
+                              "__wab_instance",
+                              sty.field__vtYfL
+                            )}
+                            select={
+                              <Select
+                                data-plasmic-name={"pos"}
+                                data-plasmic-override={overrides.pos}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.pos
+                                )}
+                                onChange={(...eventArgs) => {
+                                  p.generateStateOnChangeProp($state, [
+                                    "pos",
+                                    "value"
+                                  ])(eventArgs[0]);
+                                }}
+                                options={[
+                                  { value: "topRight", label: "Top Right" },
+                                  {
+                                    value: "bottomRight",
+                                    label: "Bottom Right"
+                                  }
+                                ]}
+                                value={p.generateStateValueProp($state, [
+                                  "pos",
+                                  "value"
+                                ])}
+                              />
+                            }
+                          >
+                            {"Badge position"}
+                          </Field>
+                        ) : null}
+                        {true ? (
+                          <Field
+                            className={classNames(
+                              "__wab_instance",
+                              sty.field__f8Jn
+                            )}
+                            select={
+                              <Select
+                                data-plasmic-name={"size"}
+                                data-plasmic-override={overrides.size}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.size
+                                )}
+                                onChange={(...eventArgs) => {
+                                  p.generateStateOnChangeProp($state, [
+                                    "size",
+                                    "value"
+                                  ])(eventArgs[0]);
+                                }}
+                                options={[
+                                  { value: "default", label: "Default" },
+                                  { value: "small", label: "Small" }
+                                ]}
+                                value={p.generateStateValueProp($state, [
+                                  "size",
+                                  "value"
+                                ])}
+                              />
+                            }
+                          >
+                            {"Size"}
+                          </Field>
+                        ) : null}
+                        {true ? (
+                          <Field
+                            className={classNames(
+                              "__wab_instance",
+                              sty.field__viEPu
+                            )}
+                            select={
+                              <TextInput
+                                data-plasmic-name={"src"}
+                                data-plasmic-override={overrides.src}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.src
+                                )}
+                                onChange={(...eventArgs) => {
+                                  p.generateStateOnChangeProp($state, [
+                                    "src",
+                                    "value"
+                                  ])(
+                                    (e => e.target?.value).apply(
+                                      null,
+                                      eventArgs
+                                    )
+                                  );
+                                }}
+                                placeholder={"image src" as const}
+                                value={p.generateStateValueProp($state, [
+                                  "src",
+                                  "value"
+                                ])}
+                              />
+                            }
+                          >
+                            {"Src"}
+                          </Field>
+                        ) : null}
+                        {true ? (
+                          <Field
+                            className={classNames(
+                              "__wab_instance",
+                              sty.field__zaXw9
+                            )}
+                            select={
+                              <Switch
+                                data-plasmic-name={"_switch"}
+                                data-plasmic-override={overrides._switch}
+                                children={null}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty._switch
+                                )}
+                                isChecked={
+                                  p.generateStateValueProp($state, [
+                                    "_switch",
+                                    "isChecked"
+                                  ]) ?? false
+                                }
+                                onChange={(...eventArgs) => {
+                                  p.generateStateOnChangeProp($state, [
+                                    "_switch",
+                                    "isChecked"
+                                  ])(eventArgs[0]);
+                                }}
+                              />
+                            }
+                          >
+                            {"Focus ring"}
+                          </Field>
+                        ) : null}
+                      </p.Stack>
                     ) : null}
-                  </p.Stack>
+                  </div>
                 ) : null}
               </p.Stack>
             ) : null}
@@ -469,11 +547,15 @@ const PlasmicDescendants = {
     "root",
     "section",
     "h1",
-    "text",
     "selectable",
     "avatar",
-    "switch2",
-    "select",
+    "title",
+    "close",
+    "titleText",
+    "close2",
+    "svg",
+    "showBadge",
+    "pos",
     "size",
     "src",
     "_switch"
@@ -481,21 +563,29 @@ const PlasmicDescendants = {
   section: [
     "section",
     "h1",
-    "text",
     "selectable",
     "avatar",
-    "switch2",
-    "select",
+    "title",
+    "close",
+    "titleText",
+    "close2",
+    "svg",
+    "showBadge",
+    "pos",
     "size",
     "src",
     "_switch"
   ],
   h1: ["h1"],
-  text: ["text"],
   selectable: ["selectable", "avatar"],
   avatar: ["avatar"],
-  switch2: ["switch2"],
-  select: ["select"],
+  title: ["title", "close", "titleText", "close2", "svg"],
+  close: ["close"],
+  titleText: ["titleText"],
+  close2: ["close2", "svg"],
+  svg: ["svg"],
+  showBadge: ["showBadge"],
+  pos: ["pos"],
   size: ["size"],
   src: ["src"],
   _switch: ["_switch"]
@@ -507,11 +597,15 @@ type NodeDefaultElementType = {
   root: "div";
   section: "section";
   h1: "h1";
-  text: "div";
   selectable: typeof Selectable;
   avatar: typeof Avatar;
-  switch2: typeof Switch;
-  select: typeof Select;
+  title: "div";
+  close: "div";
+  titleText: "div";
+  close2: "div";
+  svg: "svg";
+  showBadge: typeof Switch;
+  pos: typeof Select;
   size: typeof Select;
   src: typeof TextInput;
   _switch: typeof Switch;
@@ -579,11 +673,15 @@ export const PlasmicHomepage = Object.assign(
     // Helper components rendering sub-elements
     section: makeNodeComponent("section"),
     h1: makeNodeComponent("h1"),
-    text: makeNodeComponent("text"),
     selectable: makeNodeComponent("selectable"),
     avatar: makeNodeComponent("avatar"),
-    switch2: makeNodeComponent("switch2"),
-    select: makeNodeComponent("select"),
+    title: makeNodeComponent("title"),
+    close: makeNodeComponent("close"),
+    titleText: makeNodeComponent("titleText"),
+    close2: makeNodeComponent("close2"),
+    svg: makeNodeComponent("svg"),
+    showBadge: makeNodeComponent("showBadge"),
+    pos: makeNodeComponent("pos"),
     size: makeNodeComponent("size"),
     src: makeNodeComponent("src"),
     _switch: makeNodeComponent("_switch"),

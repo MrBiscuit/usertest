@@ -40,15 +40,14 @@
 }
 .h1 {
   position: relative;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 800px;
   margin-bottom: 32px;
-  font-size: 48px;
+  font-size: 32px;
   letter-spacing: 0px;
-  min-width: 0;
 }
-.text {
+.text__o1RYi {
   position: relative;
   width: 100%;
   height: auto;
@@ -66,7 +65,7 @@
 }
 .freeBox__kWhil > :global(.__wab_flex-container) {
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   margin-left: calc(0px - 54px);
   width: calc(100% + 54px);
@@ -81,8 +80,19 @@
   > img {
   margin-left: 54px;
 }
-.selectable:global(.__wab_instance) {
+.freeBox__mJxFt {
+  display: flex;
   position: relative;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 180px;
+  height: 180px;
+  max-width: 100%;
+  flex-shrink: 0;
+  padding: 8px;
+}
+.selectable:global(.__wab_instance) {
   width: auto;
   height: auto;
 }
@@ -90,15 +100,124 @@
   position: relative;
   margin-left: 0px;
 }
-.freeBox__vIvig {
+.freeBox__qjsis {
   display: flex;
   position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
+    0px 2px 14px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+.freeBox__jMk3 {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 0px;
+  border-width: 1px;
+  border-style: none;
+}
+.title {
+  width: 237px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: auto;
+  top: auto;
+  flex-shrink: 0;
+  padding: 8px 12px;
+}
+.title > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: calc(0px - 4px);
+  width: calc(100% + 4px);
+}
+.title > :global(.__wab_flex-container) > *,
+.title > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.title > :global(.__wab_flex-container) > picture > img,
+.title > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
+  margin-left: 4px;
+}
+.close {
+  width: 16px;
+  height: 16px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.text__an96O {
+  display: block;
+  font-size: 12px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 14px;
+  color: rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 1px;
+  left: 2px;
+}
+.titleText {
+  display: block;
+  flex-grow: 1;
+  font-size: 11px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 14px;
+  color: rgba(51, 51, 51, 1);
+  position: relative;
+  height: 14px;
+  width: 100%;
+  min-width: 0;
+}
+.close2 {
+  width: 16px;
+  height: 16px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.svg {
+  position: absolute;
+  object-fit: cover;
+  max-width: 100%;
+  color: #333;
+  width: 10.707px;
+  height: 10.707px;
+  display: block;
+  top: 3px;
+  left: 3px;
+}
+.freeBox__vIvig {
+  display: flex;
   flex-direction: column;
   width: 240px;
   height: auto;
   max-width: 100%;
-  flex-shrink: 0;
-  padding: 8px;
+  border-top-style: solid;
+  border-right-style: none;
+  border-bottom-style: none;
+  border-left-style: none;
+  border-top-color: #e5e5e5;
+  padding: 8px 12px;
+  border-width: 1px;
 }
 .freeBox__vIvig > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -120,7 +239,7 @@
 .field__nvXv0:global(.__wab_instance) {
   position: relative;
 }
-.switch2:global(.__wab_instance) {
+.showBadge:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
 }
@@ -128,7 +247,7 @@
   position: relative;
   display: flex;
 }
-.select:global(.__wab_instance) {
+.pos:global(.__wab_instance) {
   max-width: 100%;
   width: 205px;
   height: auto;
@@ -143,18 +262,19 @@
 }
 .field__viEPu:global(.__wab_instance) {
   position: relative;
+  display: none;
 }
 .src:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
 }
-.svg__fwHdH {
+.svg__cgxgQ {
   position: relative;
   object-fit: cover;
   width: 1em;
   height: 1em;
 }
-.svg__vlIMy {
+.svg___7DuyQ {
   position: relative;
   object-fit: cover;
   width: 1em;

@@ -22,7 +22,7 @@
   flex-shrink: 0;
   border-radius: 2px;
   padding: 6px 8px;
-  border: 1px solid #dbdbd7;
+  border: 1px solid #dbdbd700;
 }
 .triggercolor_softPink {
   background: #feeef8;
@@ -61,6 +61,9 @@
 .triggercolor_softRed {
   background: #ffefef;
   border-color: #ffffff00;
+}
+.root:hover .trigger {
+  border-color: #eeeeee;
 }
 .root:focus-within .trigger {
   box-shadow: 0px 0px 0px 1px #0d99ff;

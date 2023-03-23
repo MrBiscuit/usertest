@@ -6,12 +6,6 @@
   height: auto;
   align-items: center;
 }
-.root:focus-within {
-  outline: none;
-}
-.root___focusVisibleWithin {
-  outline: none;
-}
 .toggle {
   display: flex;
   position: relative;
@@ -22,45 +16,32 @@
   height: 32px;
   flex-shrink: 0;
 }
-.root:focus-within .toggle {
-  outline: none;
-}
-.root .toggle___focusVisibleWithin {
-  outline: none;
-}
 .track {
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-  width: 100%;
-  height: 24px;
+  width: 24px;
+  height: 12px;
   transition-property: background;
   transition-duration: 0.2s;
-  background: #f3f3f2;
-  min-width: 0;
+  background: none;
+  flex-shrink: 0;
   -webkit-transition-property: background;
   -webkit-transition-duration: 0.2s;
   border-radius: 12px;
-  border: 1px solid #ffffff00;
+  border: 1px solid #000000cc;
 }
 .trackisChecked {
-  background: #0091ff;
+  background: #18a0fb;
+  border-color: #18a0fbcc;
 }
 .root:hover .track {
   background: #eeeeec;
 }
 .rootisChecked:hover .trackisChecked {
   background: #0081f1;
-}
-.root:focus-within .track {
-  box-shadow: 0px 0px 0px 3px #96c7f2;
-  outline: none;
-}
-.root .track___focusVisibleWithin {
-  box-shadow: 0px 0px 0px 3px #96c7f2;
-  outline: none;
 }
 .root:active .track {
   background: #e9e9e6;
@@ -71,33 +52,29 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-  left: 4px;
-  top: 8px;
-  width: 16px;
-  height: 16px;
+  left: 9px;
+  top: 11px;
+  width: 10px;
+  height: 10px;
   transition-property: all;
   transition-duration: 0.2s;
   background: #ffffff;
+  box-shadow: 0px 0px 0px 1px #333333;
   flex-shrink: 0;
   -webkit-transition-property: all;
   -webkit-transition-duration: 0.2s;
   border-radius: 100%;
-  border: 1px solid #dbdbd7;
+  border-width: 1px;
+  border-style: none;
 }
 .thumbisChecked {
-  left: 20px;
+  left: 21px;
   right: auto;
   border-style: none;
 }
 .root:hover .thumb {
   background: #f9f9f9;
   border-color: #c8c7c1;
-}
-.root:focus-within .thumb {
-  outline: none;
-}
-.root .thumb___focusVisibleWithin {
-  outline: none;
 }
 .labelContainer {
   display: flex;
@@ -106,9 +83,6 @@
   align-items: stretch;
   justify-content: flex-start;
   margin-left: 8px;
-}
-.root .labelContainer___focusVisibleWithin {
-  outline: none;
 }
 .slotTargetChildren {
   white-space: pre;
@@ -161,38 +135,4 @@
   > picture
   > img {
   overflow: hidden;
-}
-.root .slotTargetChildren___focusVisibleWithin > *,
-.root .slotTargetChildren___focusVisibleWithin > :global(.__wab_slot) > *,
-.root
-  .slotTargetChildren___focusVisibleWithin
-  > :global(.__wab_slot)
-  > :global(.__wab_slot)
-  > *,
-.root
-  .slotTargetChildren___focusVisibleWithin
-  > :global(.__wab_slot)
-  > :global(.__wab_slot)
-  > :global(.__wab_slot)
-  > *,
-.root .slotTargetChildren___focusVisibleWithin > picture > img,
-.root
-  .slotTargetChildren___focusVisibleWithin
-  > :global(.__wab_slot)
-  > picture
-  > img,
-.root
-  .slotTargetChildren___focusVisibleWithin
-  > :global(.__wab_slot)
-  > :global(.__wab_slot)
-  > picture
-  > img,
-.root
-  .slotTargetChildren___focusVisibleWithin
-  > :global(.__wab_slot)
-  > :global(.__wab_slot)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  outline: none;
 }

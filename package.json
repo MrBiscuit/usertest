@@ -11,7 +11,7 @@
   "dependencies": {
     "@plasmicapp/cli": "^0.1.234",
     "@plasmicapp/host": "^1.0.117",
-    "@plasmicapp/react-web": "^0.2.176",
+    "@plasmicapp/react-web": "^0.2.180",
     "@plasmicpkgs/antd": "^2.0.33",
     "@types/node": "18.15.5",
     "@types/react": "18.0.28",
