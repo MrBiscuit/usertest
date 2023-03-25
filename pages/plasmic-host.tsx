@@ -36,6 +36,7 @@ registerComponent(TimeElapsed, {
     elapsedTime: {
       type: "readonly",
       onChangeProp: "onTimeChange",
+      // @ts-ignore
       initVal: 0, // Add this line to set the initial value of the elapsedTime state
     },
   },
