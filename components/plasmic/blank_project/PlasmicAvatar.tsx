@@ -140,36 +140,28 @@ function PlasmicAvatar__RenderFunc(props: {
         path: "size",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.size
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.size
       },
 
       {
         path: "border",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.border
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.border
       },
 
       {
         path: "badge",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.badge
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.badge
       },
 
       {
         path: "position",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.position
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.position
       }
     ],
 

@@ -133,9 +133,8 @@ function PlasmicSelect__Overlay__RenderFunc(props: {
         path: "relativePlacement",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.relativePlacement
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          $props.relativePlacement
       }
     ],
 

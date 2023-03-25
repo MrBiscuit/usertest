@@ -143,18 +143,14 @@ function PlasmicSwitch__RenderFunc(props: {
         path: "noLabel",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.noLabel
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noLabel
       },
 
       {
         path: "isDisabled",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.isDisabled
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isDisabled
       },
 
       {

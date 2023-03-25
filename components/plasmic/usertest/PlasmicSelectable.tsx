@@ -123,9 +123,7 @@ function PlasmicSelectable__RenderFunc(props: {
         path: "selected",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.selected
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.selected
       }
     ],
 

@@ -160,45 +160,35 @@ function PlasmicTextInput__RenderFunc(props: {
         path: "showStartIcon",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.showStartIcon
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.showStartIcon
       },
 
       {
         path: "showEndIcon",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.showEndIcon
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.showEndIcon
       },
 
       {
         path: "isDisabled",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.isDisabled
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isDisabled
       },
 
       {
         path: "color",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.color
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.color
       },
 
       {
         path: "value",
         type: "writable",
         variableType: "text",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => "" as const
-          : undefined,
+
         valueProp: "value",
         onChangeProp: "onChange"
       }

@@ -159,18 +159,14 @@ function PlasmicSelect__RenderFunc(props: {
         path: "showPlaceholder",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.showPlaceholder
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.showPlaceholder
       },
 
       {
         path: "isOpen",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.isOpen
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isOpen
       },
 
       {

@@ -138,27 +138,21 @@ function PlasmicSelect__Option__RenderFunc(props: {
         path: "isSelected",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.isSelected
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isSelected
       },
 
       {
         path: "isHighlighted",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.isHighlighted
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isHighlighted
       },
 
       {
         path: "isDisabled",
         type: "private",
         variableType: "variant",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => $props.isDisabled
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isDisabled
       }
     ],
 

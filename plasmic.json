@@ -189,19 +189,6 @@
       "cssFilePath": "plasmic/blank_project/plasmic_blank_project.module.css",
       "components": [
         {
-          "id": "HtgHzpTQFaZ7",
-          "name": "Homepage",
-          "type": "managed",
-          "projectId": "srLNpwS495U56VP6wX97Sc",
-          "renderModuleFilePath": "plasmic/blank_project/PlasmicHomepage.tsx",
-          "importSpec": {
-            "modulePath": "../pages/index.tsx"
-          },
-          "cssFilePath": "plasmic/blank_project/PlasmicHomepage.module.css",
-          "scheme": "blackbox",
-          "componentType": "page"
-        },
-        {
           "id": "CbeSuJTES8a",
           "name": "Select",
           "type": "managed",
@@ -339,19 +326,6 @@
           "plumeType": "button"
         },
         {
-          "id": "EiqWor0wKzy",
-          "name": "Homepage2",
-          "type": "managed",
-          "projectId": "srLNpwS495U56VP6wX97Sc",
-          "renderModuleFilePath": "plasmic/usertest/PlasmicHomepage2.tsx",
-          "importSpec": {
-            "modulePath": "../pages/-2.tsx"
-          },
-          "cssFilePath": "plasmic/usertest/PlasmicHomepage2.module.css",
-          "scheme": "blackbox",
-          "componentType": "page"
-        },
-        {
           "id": "RodQ_KOiniY",
           "name": "Task1",
           "type": "managed",
@@ -363,6 +337,19 @@
           "cssFilePath": "plasmic/usertest/PlasmicTask1.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "EiqWor0wKzy",
+          "name": "Home",
+          "type": "managed",
+          "projectId": "srLNpwS495U56VP6wX97Sc",
+          "renderModuleFilePath": "plasmic/usertest/PlasmicHome.tsx",
+          "importSpec": {
+            "modulePath": "../pages/index.tsx"
+          },
+          "cssFilePath": "plasmic/usertest/PlasmicHome.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
         }
       ],
       "icons": [
@@ -407,6 +394,11 @@
           "id": "oIMlK8pxm",
           "name": "image",
           "filePath": "../public/plasmic/blank_project/images/image.png"
+        },
+        {
+          "id": "5K-z50Ax7",
+          "name": "image 2",
+          "filePath": "../public/plasmic/usertest/images/image2.png"
         }
       ],
       "indirect": false,
@@ -421,6 +413,11 @@
           "id": "AKnpb8EmFP",
           "name": "Fetcher",
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        },
+        {
+          "id": "rdTmyprFqd",
+          "name": "Timer",
+          "componentImportPath": "./pages/plasmic-host"
         }
       ]
     }
@@ -439,6 +436,6 @@
   "nextjsConfig": {
     "pagesDir": "../pages"
   },
-  "cliVersion": "0.1.241",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.241/dist/plasmic.schema.json"
+  "cliVersion": "0.1.242",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.242/dist/plasmic.schema.json"
 }

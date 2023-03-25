@@ -1,48 +1,40 @@
-
 import * as React from 'react';
-import Script from 'next/script';
-import { PlasmicCanvasHost, registerComponent } from '@plasmicapp/host';
+import { PlasmicCanvasHost, registerComponent } from '@plasmicapp/react-web/lib/host';
 
-// @ts-ignore
-function TimeElapsed({  onTimeChange }) {
+export function Timer(props: {
+  onTimeChange: (time: number) => void;
+}) {
   const [time, setTime] = React.useState(0);
   React.useEffect(() => {
-    const timer = setInterval(() => {
-      setTime((t) => {
-        const newTime = t + 1;
-
-        return newTime;
-      });
-    }, 1000);
+    const timer = setInterval(() => setTime(t => t+1), 1000);
     return () => clearInterval(timer);
   }, []);
   React.useEffect(() => {
-    onTimeChange(time);
-  }, [time]);
+    props.onTimeChange(time);
+  }, [time, props.onTimeChange]);
 
-  return <></>;
+  return <>{time}</>;
 }
-registerComponent(TimeElapsed, {
-  name: "TimeElapsed",
-  importPath: "pages/plasmic-host",
-  props: {
 
+registerComponent(Timer, {
+  name: "Timer",
+  importPath:"./pages/plasmic-host",
+  props: {
     onTimeChange: {
       type: "eventHandler",
-      argTypes: [{ name: "elapsedTime", type: "number" }],
-    },
+      argTypes: [{name: "time", type: "number"}]
+    }
   },
   states: {
     elapsedTime: {
       type: "readonly",
       onChangeProp: "onTimeChange",
-      // @ts-ignore
-      initVal: 0, // Add this line to set the initial value of the elapsedTime state
-    },
-  },
-});
+      variableType: "number",
+      initVal: 0
+    }
+  }
+})
 
 export default function PlasmicHost() {
   return <PlasmicCanvasHost />;
 }
-    

@@ -122,9 +122,7 @@ function PlasmicField__RenderFunc(props: {
         path: "select.value",
         type: "private",
         variableType: "text",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => "blue" as const
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => "blue" as const
       }
     ],
 

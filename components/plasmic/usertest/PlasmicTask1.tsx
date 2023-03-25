@@ -49,6 +49,7 @@ import Select from "../../Select"; // plasmic-import: CbeSuJTES8a/component
 import Switch from "../../Switch"; // plasmic-import: LfL2mcCf-Co/component
 import TextInput from "../../TextInput"; // plasmic-import: D5uMvH3-wZG/component
 import Button from "../../Button"; // plasmic-import: 206AypIGIrX/component
+import { Timer } from "../../../pages/plasmic-host"; // plasmic-import: rdTmyprFqd/codeComponent
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -66,9 +67,20 @@ export type PlasmicTask1__VariantsArgs = {};
 type VariantPropType = keyof PlasmicTask1__VariantsArgs;
 export const PlasmicTask1__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicTask1__ArgsType = {};
+export type PlasmicTask1__ArgsType = {
+  correctAnswer?: any;
+  onCorrectAnswerChange?: (val: any) => void;
+  userId?: string;
+  onUserIdChange?: (val: string) => void;
+};
+
 type ArgPropType = keyof PlasmicTask1__ArgsType;
-export const PlasmicTask1__ArgProps = new Array<ArgPropType>();
+export const PlasmicTask1__ArgProps = new Array<ArgPropType>(
+  "correctAnswer",
+  "onCorrectAnswerChange",
+  "userId",
+  "onUserIdChange"
+);
 
 export type PlasmicTask1__OverridesType = {
   root?: p.Flex<"div">;
@@ -86,9 +98,14 @@ export type PlasmicTask1__OverridesType = {
   src?: p.Flex<typeof TextInput>;
   _switch?: p.Flex<typeof Switch>;
   button?: p.Flex<typeof Button>;
+  timer?: p.Flex<typeof Timer>;
 };
 
 export interface DefaultTask1Props {
+  correctAnswer?: any;
+  onCorrectAnswerChange?: (val: any) => void;
+  userId?: string;
+  onUserIdChange?: (val: string) => void;
   className?: string;
 }
 
@@ -143,46 +160,66 @@ function PlasmicTask1__RenderFunc(props: {
         path: "size.value",
         type: "private",
         variableType: "text",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => "default" as const
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => "default" as const
       },
 
       {
         path: "_switch.isChecked",
         type: "private",
         variableType: "text",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => undefined
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
 
       {
         path: "src.value",
         type: "private",
         variableType: "text",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) =>
-              "https://pyxis.nymag.com/v1/imgs/f85/54d/9494425816f9436f1366315cd8a955ca9e-avatar.1x.rsquare.w1400.jpg" as const
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "https://pyxis.nymag.com/v1/imgs/f85/54d/9494425816f9436f1366315cd8a955ca9e-avatar.1x.rsquare.w1400.jpg" as const
       },
 
       {
         path: "pos.value",
         type: "private",
         variableType: "text",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => "blue" as const
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => "blue" as const
       },
 
       {
         path: "showBadge.isChecked",
         type: "private",
         variableType: "text",
-        initFunc: true
-          ? ({ $props, $state, $queries, $ctx }) => undefined
-          : undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+
+      {
+        path: "result",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+
+      {
+        path: "correctAnswer",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "correctAnswer",
+        onChangeProp: "onCorrectAnswerChange"
+      },
+      {
+        path: "userId",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "userId",
+        onChangeProp: "onUserIdChange"
+      },
+      {
+        path: "timer.elapsedTime",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
 
@@ -254,10 +291,14 @@ function PlasmicTask1__RenderFunc(props: {
                     <Avatar
                       data-plasmic-name={"avatar"}
                       data-plasmic-override={overrides.avatar}
+                      badge={$state.result.showBadge}
+                      border={$state.result.focusRing}
                       className={classNames("__wab_instance", sty.avatar)}
                       image={
                         "https://pyxis.nymag.com/v1/imgs/f85/54d/9494425816f9436f1366315cd8a955ca9e-avatar.1x.rsquare.w1400.jpg" as const
                       }
+                      position={$state.result.position}
+                      size={$state.result.size}
                     />
                   }
                 />
@@ -330,11 +371,95 @@ function PlasmicTask1__RenderFunc(props: {
                             data-plasmic-name={"size"}
                             data-plasmic-override={overrides.size}
                             className={classNames("__wab_instance", sty.size)}
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "size",
-                                "value"
-                              ])(eventArgs[0]);
+                            onChange={async (...eventArgs) => {
+                              ((...eventArgs) => {
+                                p.generateStateOnChangeProp($state, [
+                                  "size",
+                                  "value"
+                                ])(eventArgs[0]);
+                              }).apply(null, eventArgs);
+                              (async value => {
+                                const $steps = {};
+                                $steps["setResult"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "u9wZUkbwy",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "variable"
+                                          },
+                                          () => ({
+                                            objRoot: $state,
+                                            variablePath: ["result"]
+                                          })
+                                        ),
+                                        operation: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "u9wZUkbwy",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "operation"
+                                          },
+                                          () => 0
+                                        ),
+                                        value: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "u9wZUkbwy",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "value"
+                                          },
+                                          () => ({
+                                            ...$state.result,
+                                            size: $state.size.value
+                                          })
+                                        )
+                                      };
+
+                                      return __wrapUserFunction(
+                                        {
+                                          type: "InteractionLoc",
+                                          actionName: "updateVariable",
+                                          interactionUuid: "u9wZUkbwy",
+                                          componentUuid: "RodQ_KOiniY"
+                                        },
+                                        () =>
+                                          (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            p.set(objRoot, variablePath, value);
+                                            return value;
+                                          })?.apply(null, [actionArgs]),
+                                        actionArgs
+                                      );
+                                    })()
+                                  : undefined;
+                                if (
+                                  typeof $steps["setResult"] === "object" &&
+                                  typeof $steps["setResult"].then === "function"
+                                ) {
+                                  $steps["setResult"] = await __wrapUserPromise(
+                                    {
+                                      type: "InteractionLoc",
+                                      actionName: "updateVariable",
+                                      interactionUuid: "u9wZUkbwy",
+                                      componentUuid: "RodQ_KOiniY"
+                                    },
+                                    $steps["setResult"]
+                                  );
+                                }
+                              })?.apply(null, eventArgs);
                             }}
                             options={[
                               { value: "small", label: "Small" },
@@ -372,11 +497,96 @@ function PlasmicTask1__RenderFunc(props: {
                                 "isChecked"
                               ]) ?? false
                             }
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "showBadge",
-                                "isChecked"
-                              ])(eventArgs[0]);
+                            onChange={async (...eventArgs) => {
+                              ((...eventArgs) => {
+                                p.generateStateOnChangeProp($state, [
+                                  "showBadge",
+                                  "isChecked"
+                                ])(eventArgs[0]);
+                              }).apply(null, eventArgs);
+                              (async isChecked => {
+                                const $steps = {};
+                                $steps["setResult"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "ioB0zlDUS",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "variable"
+                                          },
+                                          () => ({
+                                            objRoot: $state,
+                                            variablePath: ["result"]
+                                          })
+                                        ),
+                                        operation: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "ioB0zlDUS",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "operation"
+                                          },
+                                          () => 0
+                                        ),
+                                        value: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "ioB0zlDUS",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "value"
+                                          },
+                                          () => ({
+                                            ...$state.result,
+                                            showBadge:
+                                              $state.showBadge.isChecked
+                                          })
+                                        )
+                                      };
+
+                                      return __wrapUserFunction(
+                                        {
+                                          type: "InteractionLoc",
+                                          actionName: "updateVariable",
+                                          interactionUuid: "ioB0zlDUS",
+                                          componentUuid: "RodQ_KOiniY"
+                                        },
+                                        () =>
+                                          (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            p.set(objRoot, variablePath, value);
+                                            return value;
+                                          })?.apply(null, [actionArgs]),
+                                        actionArgs
+                                      );
+                                    })()
+                                  : undefined;
+                                if (
+                                  typeof $steps["setResult"] === "object" &&
+                                  typeof $steps["setResult"].then === "function"
+                                ) {
+                                  $steps["setResult"] = await __wrapUserPromise(
+                                    {
+                                      type: "InteractionLoc",
+                                      actionName: "updateVariable",
+                                      interactionUuid: "ioB0zlDUS",
+                                      componentUuid: "RodQ_KOiniY"
+                                    },
+                                    $steps["setResult"]
+                                  );
+                                }
+                              })?.apply(null, eventArgs);
                             }}
                           />
                         }
@@ -404,11 +614,95 @@ function PlasmicTask1__RenderFunc(props: {
                             data-plasmic-name={"pos"}
                             data-plasmic-override={overrides.pos}
                             className={classNames("__wab_instance", sty.pos)}
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "pos",
-                                "value"
-                              ])(eventArgs[0]);
+                            onChange={async (...eventArgs) => {
+                              ((...eventArgs) => {
+                                p.generateStateOnChangeProp($state, [
+                                  "pos",
+                                  "value"
+                                ])(eventArgs[0]);
+                              }).apply(null, eventArgs);
+                              (async value => {
+                                const $steps = {};
+                                $steps["setResult"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "8DJ_xi0a1",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "variable"
+                                          },
+                                          () => ({
+                                            objRoot: $state,
+                                            variablePath: ["result"]
+                                          })
+                                        ),
+                                        operation: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "8DJ_xi0a1",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "operation"
+                                          },
+                                          () => 0
+                                        ),
+                                        value: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "8DJ_xi0a1",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "value"
+                                          },
+                                          () => ({
+                                            ...$state.result,
+                                            position: $state.pos.value
+                                          })
+                                        )
+                                      };
+
+                                      return __wrapUserFunction(
+                                        {
+                                          type: "InteractionLoc",
+                                          actionName: "updateVariable",
+                                          interactionUuid: "8DJ_xi0a1",
+                                          componentUuid: "RodQ_KOiniY"
+                                        },
+                                        () =>
+                                          (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            p.set(objRoot, variablePath, value);
+                                            return value;
+                                          })?.apply(null, [actionArgs]),
+                                        actionArgs
+                                      );
+                                    })()
+                                  : undefined;
+                                if (
+                                  typeof $steps["setResult"] === "object" &&
+                                  typeof $steps["setResult"].then === "function"
+                                ) {
+                                  $steps["setResult"] = await __wrapUserPromise(
+                                    {
+                                      type: "InteractionLoc",
+                                      actionName: "updateVariable",
+                                      interactionUuid: "8DJ_xi0a1",
+                                      componentUuid: "RodQ_KOiniY"
+                                    },
+                                    $steps["setResult"]
+                                  );
+                                }
+                              })?.apply(null, eventArgs);
                             }}
                             options={[
                               { value: "topRight", label: "Top Right" },
@@ -473,11 +767,95 @@ function PlasmicTask1__RenderFunc(props: {
                                 "isChecked"
                               ]) ?? false
                             }
-                            onChange={(...eventArgs) => {
-                              p.generateStateOnChangeProp($state, [
-                                "_switch",
-                                "isChecked"
-                              ])(eventArgs[0]);
+                            onChange={async (...eventArgs) => {
+                              ((...eventArgs) => {
+                                p.generateStateOnChangeProp($state, [
+                                  "_switch",
+                                  "isChecked"
+                                ])(eventArgs[0]);
+                              }).apply(null, eventArgs);
+                              (async isChecked => {
+                                const $steps = {};
+                                $steps["setResult"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "vPRvC_GWP",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "variable"
+                                          },
+                                          () => ({
+                                            objRoot: $state,
+                                            variablePath: ["result"]
+                                          })
+                                        ),
+                                        operation: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "vPRvC_GWP",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "operation"
+                                          },
+                                          () => 0
+                                        ),
+                                        value: __wrapUserFunction(
+                                          {
+                                            type: "InteractionArgLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "vPRvC_GWP",
+                                            componentUuid: "RodQ_KOiniY",
+                                            argName: "value"
+                                          },
+                                          () => ({
+                                            ...$state.result,
+                                            focusRing: $state._switch.isChecked
+                                          })
+                                        )
+                                      };
+
+                                      return __wrapUserFunction(
+                                        {
+                                          type: "InteractionLoc",
+                                          actionName: "updateVariable",
+                                          interactionUuid: "vPRvC_GWP",
+                                          componentUuid: "RodQ_KOiniY"
+                                        },
+                                        () =>
+                                          (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            p.set(objRoot, variablePath, value);
+                                            return value;
+                                          })?.apply(null, [actionArgs]),
+                                        actionArgs
+                                      );
+                                    })()
+                                  : undefined;
+                                if (
+                                  typeof $steps["setResult"] === "object" &&
+                                  typeof $steps["setResult"].then === "function"
+                                ) {
+                                  $steps["setResult"] = await __wrapUserPromise(
+                                    {
+                                      type: "InteractionLoc",
+                                      actionName: "updateVariable",
+                                      interactionUuid: "vPRvC_GWP",
+                                      componentUuid: "RodQ_KOiniY"
+                                    },
+                                    $steps["setResult"]
+                                  );
+                                }
+                              })?.apply(null, eventArgs);
                             }}
                           />
                         }
@@ -491,15 +869,26 @@ function PlasmicTask1__RenderFunc(props: {
             ) : null}
           </p.Stack>
         ) : null}
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__t9CDf
-          )}
-        >
-          {"123123"}
-        </div>
+        {true ? (
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__t9CDf
+            )}
+          >
+            {(() => {
+              try {
+                return JSON.stringify($state.result);
+              } catch (e) {
+                if (e instanceof TypeError) {
+                  return "123123";
+                }
+                throw e;
+              }
+            })()}
+          </div>
+        ) : null}
         <Button
           data-plasmic-name={"button"}
           data-plasmic-override={overrides.button}
@@ -520,19 +909,9 @@ function PlasmicTask1__RenderFunc(props: {
                       },
                       () => ({
                         sourceId: "b8UAFEnT6Wj5LorB3qg5zQ",
-                        opId: "c6f24a9354cbee15cc49442a65b670c3b4e939ea69a57a5748a761b99224574c42dec7c2de19c92295aff463df5767e972775e26b9b5b752b554a5553dcc988ab28f30bf0b0d5241fb4c8e9fef911f399138c08deb9d7cd7018e49b9fefd6e020bba9af0d61154042ea5db222087be52b02e0fb590f8adf77735a7dbb64a2059699f4c56f63fbc8cae7df080e1c9e73d29d28b7886aad4c1850574166bf040de67bf4523293681d443b83b6c1677e7172707c94e192c32b6d09f4064600483d0ccbe49f6ca2cad7e3ddc97416b488fef8dd92c7d77922cfc8706b91d2383fa0a5ad15d77f8c44345e2f683f6bb8a2fa3bfb130b8739a42cae0a94333e6eb0d902d1be54c9d4c912d57dfc3f4864d1aa02e2bf24e8b34ae24addaafd9985cf3fbc73f9cced6c36346c588a305967cee39466629f2f060270c14f719c5f82beb9f59a8952b43404f9e08324ea21d718d2e48cabcae5d33130278a117a645a3e86e08fd6b6209660f823dfbc34300de52d2baeff4f5b691ba2983517b97e8a02ce5a791cdcc6681fa8e42c896e0d340e34dfd7d37c1788968b9ba679118d8aef09e5a31fe9490b5f7fd4606432095e674785c7cba1b3a1cbab364d1714187bd029e90846de75755320c22593a2f8e5f197dad98e4bbb8111858c52bd8463c326f16b8a5b452e4aa4b0a222432dde107f4760823ebe59b7681977440231c54189a2d6c987134fc9866dd01dd62890588c9d795d0dd59d4373100763dba243a0f24c7e16cf4c903bbf724dfb47a16b64698ca321eafba5fe157f86e8f83e0621df5b286f2f23e89e03d894fcf98dea9ec8db1818e9906c4260c8acc93c107c776ed461c7fc5f8f05293419fb77b16acc7afa8829905ab6649abb8ec8dc7d1dd3f726813ff3b1c19bf689d7476850e19d7ae0d35998a7f8ed8ca47c51ec12a6e14f3e19e0770defaf4aa160015f1f9e3da94d51eee0d493445a7bbb58992ef61b8f0fa7a82ed2b6d0e6ebcdce0a15fa6e3c3efd75b7ebbaae9db9e3f92e70d2bad92139663cdb70ca557bb7d6af1a3b330c57f54ca6b485ae4b196e5bd1bcbc81a53a91df2080734d498515490eaf0ebbcabe1d6978be31af691e160fd5b2e2ed7a6b61f2ca54999a34a0959036551808f147bfef1677d21b27e424f692ab2ce960516ffd6022ca954d712cb1f29f85564eaef752f",
+                        opId: "5d58e9a7c1f042e7754f41e514c0c2ddb4e939ea69a57a5748a761b99224574c42dec7c2de19c92295aff463df5767e972775e26b9b5b752b554a5553dcc988ab28f30bf0b0d5241fb4c8e9fef911f399138c08deb9d7cd7018e49b9fefd6e020b878ffcc738051e1de1802d61dcfc52fc0f71ade086f4ff237cfb8eed436f0277cb5643e871eea4e528c282f5d0ad706286d010d4f2af908b026d5067e6438025bf45232961cb804ba527297329bd560c4ad20c07757bb6d4985325694b9eacc0f11db1c56388712c9f975a5206c4aa97c56261659225f68a1da8527cc9d00b44c7626df68f4553ffad98b4bade7febd2ff2db85f9746dcf7fd063dfae14c987f59c01fde12ae375994c5e29b1601e22f7ca206e57acf6ac298ea93db6bb5f5c12dcf8fdf816b1b98dbdf04a878ab7a1d3a29d9f973214740f61ac5e925f29259a9822c444649cd473c0fbf1d288a1a43caefa656761b0768b506f219efe2664fe2663b5b075c8276f7dc101a9b5bcea7b9aef1fadfa60185517a8af5f222f4ab9091c26c85f89a539be3ae883cf031b30179933dd232eb9d33920bd5a9f0857237acdb988ef1815c4e062fd1a3447f1961bd4f2b54abfb70d776559bbd19949fc165f60e477c07641a212a9b1e0d71ff9df1f7a2160161c87fd8413d246f5db4a7aa40e2ef00193a6828deb230ff2f5b74adb7c0028cd83a137755595dcb6261946004f2846cb108dc24e84bc78b9d87e2d01c85057a4a3c3abf61637224c6fc23b1d214a3ab5fd2b06f38fa5dbff87c1eafba029d19aa2b86aafc5053b3f3c5aeb74cb3ae7cc503cf8ee7bebf8dadb384e51e856a56c09ffac655c33ae417027bd0a7f0419851cab3745aadd0a9edbf8540ab715daaacf2cfc7d7ca3e622121b1323202865a9a3276df240fc8b90061c3936f9290be099c31db177418bbb3d33b67d8ebbef0540e1eeffea3c78d9b5aa6595e7f43b7baaec5bae429b5fcf87892d9340c5d2cf088e7b645f3fecfa5ee1a6ca982f7dbbf12c5da0f71ec9512857988f61caa41ad656d9cf5a501d57e508820035be2b581f4d207ddcc0a4df40e8a590020c39e1a448cc4a0aee5ffeaebabb2a81babdcd42ce9472b349af1b6376ff116979b7c356241620cae880735bfbe377578bc56011750268eca881526a9c50260af06df13c64c20e47d23b9b87b376f03a97eed8cd28dcd877015d42d31029e6e444ae0cedd33c923924d7002868c1c490d5f37f240325ef506430d0b459334e40a879e469ef1f1025842b6e955e818943818fe7b3faad37dc31932f2a3ca26",
                         userArgs: {
                           variables: [
-                            (() => {
-                              try {
-                                return undefined;
-                              } catch (e) {
-                                if (e instanceof TypeError) {
-                                  return null;
-                                }
-                                throw e;
-                              }
-                            })(),
                             (() => {
                               try {
                                 return (() => {
@@ -566,6 +945,26 @@ function PlasmicTask1__RenderFunc(props: {
                                     ? "success"
                                     : JSON.stringify($state.result);
                                 })();
+                              } catch (e) {
+                                if (e instanceof TypeError) {
+                                  return null;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            (() => {
+                              try {
+                                return $state.userId;
+                              } catch (e) {
+                                if (e instanceof TypeError) {
+                                  return null;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            (() => {
+                              try {
+                                return $state.timer.elapsedTime;
                               } catch (e) {
                                 if (e instanceof TypeError) {
                                   return null;
@@ -639,6 +1038,15 @@ function PlasmicTask1__RenderFunc(props: {
         >
           {"Submit and Continue ->"}
         </Button>
+        <Timer
+          data-plasmic-name={"timer"}
+          data-plasmic-override={overrides.timer}
+          className={classNames("__wab_instance", sty.timer)}
+          onTimeChange={p.generateStateOnChangeProp($state, [
+            "timer",
+            "elapsedTime"
+          ])}
+        />
       </div>
     ) : null
   ) as React.ReactElement | null;
@@ -660,7 +1068,8 @@ const PlasmicDescendants = {
     "pos",
     "src",
     "_switch",
-    "button"
+    "button",
+    "timer"
   ],
   h1: ["h1"],
   selectable: ["selectable", "avatar"],
@@ -675,7 +1084,8 @@ const PlasmicDescendants = {
   pos: ["pos"],
   src: ["src"],
   _switch: ["_switch"],
-  button: ["button"]
+  button: ["button"],
+  timer: ["timer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -696,6 +1106,7 @@ type NodeDefaultElementType = {
   src: typeof TextInput;
   _switch: typeof Switch;
   button: typeof Button;
+  timer: typeof Timer;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -772,6 +1183,7 @@ export const PlasmicTask1 = Object.assign(
     src: makeNodeComponent("src"),
     _switch: makeNodeComponent("_switch"),
     button: makeNodeComponent("button"),
+    timer: makeNodeComponent("timer"),
 
     // Metadata about props expected for PlasmicTask1
     internalVariantProps: PlasmicTask1__VariantProps,
