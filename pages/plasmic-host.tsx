@@ -3,14 +3,43 @@ import * as React from 'react';
 import Script from 'next/script';
 import { PlasmicCanvasHost, registerComponent } from '@plasmicapp/host';
 
-// You can register any code components that you want to use here; see
-// https://docs.plasmic.app/learn/code-components-ref/
-// And configure your Plasmic project to use the host url pointing at
-// the /plasmic-host page of your nextjs app (for example,
-// http://localhost:3000/plasmic-host).  See
-// https://docs.plasmic.app/learn/app-hosting/#set-a-plasmic-project-to-use-your-app-host
+// @ts-ignore
+function TimeElapsed({  onTimeChange }) {
+  const [time, setTime] = React.useState(0);
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setTime((t) => {
+        const newTime = t + 1;
 
-// registerComponent(...)
+        return newTime;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+  React.useEffect(() => {
+    onTimeChange(time);
+  }, [time]);
+
+  return <></>;
+}
+registerComponent(TimeElapsed, {
+  name: "TimeElapsed",
+  importPath: "pages/plasmic-host",
+  props: {
+
+    onTimeChange: {
+      type: "eventHandler",
+      argTypes: [{ name: "elapsedTime", type: "number" }],
+    },
+  },
+  states: {
+    elapsedTime: {
+      type: "readonly",
+      onChangeProp: "onTimeChange",
+      initVal: 0, // Add this line to set the initial value of the elapsedTime state
+    },
+  },
+});
 
 export default function PlasmicHost() {
   return <PlasmicCanvasHost />;

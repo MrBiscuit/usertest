@@ -337,6 +337,32 @@
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "button"
+        },
+        {
+          "id": "EiqWor0wKzy",
+          "name": "Homepage2",
+          "type": "managed",
+          "projectId": "srLNpwS495U56VP6wX97Sc",
+          "renderModuleFilePath": "plasmic/usertest/PlasmicHomepage2.tsx",
+          "importSpec": {
+            "modulePath": "../pages/-2.tsx"
+          },
+          "cssFilePath": "plasmic/usertest/PlasmicHomepage2.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "RodQ_KOiniY",
+          "name": "Task1",
+          "type": "managed",
+          "projectId": "srLNpwS495U56VP6wX97Sc",
+          "renderModuleFilePath": "plasmic/usertest/PlasmicTask1.tsx",
+          "importSpec": {
+            "modulePath": "Task1.tsx"
+          },
+          "cssFilePath": "plasmic/usertest/PlasmicTask1.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
