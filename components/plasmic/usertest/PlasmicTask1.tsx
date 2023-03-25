@@ -1038,15 +1038,19 @@ function PlasmicTask1__RenderFunc(props: {
         >
           {"Submit and Continue ->"}
         </Button>
-        <Timer
-          data-plasmic-name={"timer"}
-          data-plasmic-override={overrides.timer}
-          className={classNames("__wab_instance", sty.timer)}
-          onTimeChange={p.generateStateOnChangeProp($state, [
-            "timer",
-            "elapsedTime"
-          ])}
-        />
+        {true ? (
+          <div className={classNames(projectcss.all, sty.freeBox__itu2M)}>
+            <Timer
+              data-plasmic-name={"timer"}
+              data-plasmic-override={overrides.timer}
+              className={classNames("__wab_instance", sty.timer)}
+              onTimeChange={p.generateStateOnChangeProp($state, [
+                "timer",
+                "elapsedTime"
+              ])}
+            />
+          </div>
+        ) : null}
       </div>
     ) : null
   ) as React.ReactElement | null;
